@@ -8,7 +8,7 @@
  */
 SignalVec &fdct(const SignalVec &sample)
 {
-	std::vector<double> *result = new SignalVec();
+	SignalVec *result = new SignalVec();
 
 	unsigned int n = sample.size();
    double f_u;
