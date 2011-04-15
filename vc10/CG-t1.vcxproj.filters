@@ -13,5 +13,27 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DCT">
+      <UniqueIdentifier>{069cc3d7-dc1f-4361-a712-6cc29099b2d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DCT">
+      <UniqueIdentifier>{0cc29de7-bfe4-468c-a720-7129c723c399}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\dct.cpp">
+      <Filter>Source Files\DCT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\dct.h">
+      <Filter>Header Files\DCT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\macros.h">
+      <Filter>Header Files\DCT</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
