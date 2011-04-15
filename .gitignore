@@ -1,8 +1,4 @@
-*
-.opensdf
-
+*.opensdf
 vc10/Debug/*
-
-vc10/ipch/
-*
+vc10/ipch/*
 bin/*
