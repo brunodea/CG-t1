@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 
    color_scheme->loadScheme(scv::ColorScheme::clean);
    kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+   kernel->lockWindowSize(true);
 
    GUI::BottomSidebar bottom_sidebar(0, WINDOW_HEIGHT - (WINDOW_HEIGHT / 6));
       
