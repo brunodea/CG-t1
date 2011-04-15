@@ -3,10 +3,16 @@
 
 #include <SCV/Spinner.h>
 
+#define SAMPLE_SPINNER_MAX_VALUE 100
+#define SAMPLE_SPINNER_MIN_VALUE 0
+
 namespace GUI
 {
    class SampleValueSpinner : public scv::Spinner
    {
+   public:
+      SampleValueSpinner(int pos_x, int pos_y);
+
    }; //end of class SampleValueSpinner
 } //end of namespace GUI.
 
