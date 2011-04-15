@@ -11,10 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\GUI\Sidebar\BottomSidebar.cpp" />
+    <ClCompile Include="..\src\GUI\Sidebar\SampleValueSpinner.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\dct.hpp" />
+    <ClInclude Include="..\include\DCT\dct.hpp" />
+    <ClInclude Include="..\include\GUI\Sidebar\BottomSidebar.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\SampleValueSpinner.h" />
     <ClInclude Include="..\include\macros.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

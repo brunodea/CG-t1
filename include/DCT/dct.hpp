@@ -1,5 +1,5 @@
-#ifndef _CG_T1_DCT_H_
-#define _CG_T1_DCT_H_
+#ifndef _BRUNODEA__CG_T1_DCT_H_
+#define _BRUNODEA__CG_T1_DCT_H_
 
 #include <vector>
 #include <cmath>

@@ -7,7 +7,11 @@
 #include <SCV/Label.h>
 
 
+#include "../include/GUI/Sidebar/BottomSidebar.h"
 #include "../include/DCT/dct.hpp"
+#include "../include/macros.h"
+
+#include <iostream>
 
 void dct_test()
 {
@@ -39,19 +43,18 @@ void dct_test()
    system("pause");
 }
 
-
 int main(int argc, char *argv[])
 {
    scv::Kernel *kernel = scv::Kernel::getInstance();
    scv::ColorScheme *color_scheme = scv::ColorScheme::getInstance();
 
    color_scheme->loadScheme(scv::ColorScheme::clean);
-   kernel->setWindowSize(600, 480);
+   kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-   scv::Label *label = new scv::Label(scv::Point(50, 50), "Hello World!");
-   kernel->addComponent(label);
-
-
+   GUI::BottomSidebar bottom_sidebar(0, WINDOW_HEIGHT - (WINDOW_HEIGHT / 6));
+      
+   kernel->addComponent(&bottom_sidebar);
+   
    kernel->setFramesPerSecond(60);
    kernel->run();
 

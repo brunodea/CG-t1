@@ -1,6 +1,12 @@
-#ifndef _CG_T1_MACROS_H_
-#define _CG_T1_MACROS_H_
+#ifndef _BRUNODEA__CG_T1_MACROS_H_
+#define _BRUNODEA__CG_T1_MACROS_H_
 
 #define MY_PI 3.14159265
+
+#define WINDOW_WIDTH 600
+#define WINDOW_HEIGHT 480
+
+#define SAMPLE_SPINNER_MAX_VALUE 100
+#define SAMPLE_SPINNER_MIN_VALUE 0
 
 #endif

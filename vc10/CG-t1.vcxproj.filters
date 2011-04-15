@@ -16,17 +16,41 @@
     <Filter Include="Header Files\DCT">
       <UniqueIdentifier>{069cc3d7-dc1f-4361-a712-6cc29099b2d1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{32a4a299-c461-4cab-9a65-698710b3a21c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Sidebar">
+      <UniqueIdentifier>{b43fc89b-bcfa-4542-86b3-991decbe7d5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui">
+      <UniqueIdentifier>{61d2ad25-04da-49db-8062-83d3c4282846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui\Sidebar">
+      <UniqueIdentifier>{deb34581-aeae-4494-8efb-104239094ed4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Sidebar\BottomSidebar.cpp">
+      <Filter>Source Files\GUI\Sidebar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\Sidebar\SampleValueSpinner.cpp">
+      <Filter>Source Files\GUI\Sidebar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
-      <Filter>Header Files\DCT</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\dct.hpp">
+    <ClInclude Include="..\include\GUI\Sidebar\BottomSidebar.h">
+      <Filter>Header Files\gui\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\SampleValueSpinner.h">
+      <Filter>Header Files\gui\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DCT\dct.hpp">
       <Filter>Header Files\DCT</Filter>
     </ClInclude>
   </ItemGroup>

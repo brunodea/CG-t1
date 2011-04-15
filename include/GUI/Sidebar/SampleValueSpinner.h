@@ -2,9 +2,7 @@
 #define _BRUNODEA_CG_T1_SAMPLE_VALUE_SPINNER_H_
 
 #include <SCV/Spinner.h>
-
-#define SAMPLE_SPINNER_MAX_VALUE 100
-#define SAMPLE_SPINNER_MIN_VALUE 0
+#include "../../macros.h"
 
 namespace GUI
 {
