@@ -4,7 +4,7 @@
 #include <vector>
 #include <cmath>
 
-#include "macros.h"
+#include "../macros.h"
 
 namespace DCT
 {

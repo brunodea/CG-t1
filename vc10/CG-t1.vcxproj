@@ -11,11 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\dct.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\dct.h" />
+    <ClInclude Include="..\include\dct.hpp" />
     <ClInclude Include="..\include\macros.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
