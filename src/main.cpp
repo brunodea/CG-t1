@@ -2,9 +2,14 @@
 #include <vector>
 #include <cstdlib>
 
-#include "../include/dct.hpp"
+#include <SCV/Kernel.h>
+#include <SCV/ColorScheme.h>
+#include <SCV/Label.h>
 
-int main(int argc, char *argv[])
+
+#include "../include/DCT/dct.hpp"
+
+void dct_test()
 {
    DCT::SignalVec s;
    s.push_back(8);
@@ -32,6 +37,23 @@ int main(int argc, char *argv[])
    std::cout << std::endl;
 
    system("pause");
+}
+
+
+int main(int argc, char *argv[])
+{
+   scv::Kernel *kernel = scv::Kernel::getInstance();
+   scv::ColorScheme *color_scheme = scv::ColorScheme::getInstance();
+
+   color_scheme->loadScheme(scv::ColorScheme::clean);
+   kernel->setWindowSize(600, 480);
+
+   scv::Label *label = new scv::Label(scv::Point(50, 50), "Hello World!");
+   kernel->addComponent(label);
+
+
+   kernel->setFramesPerSecond(60);
+   kernel->run();
 
 	return 0;
 }
