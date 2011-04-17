@@ -52,9 +52,7 @@ int main(int argc, char *argv[])
    kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
    kernel->lockWindowSize(true);
 
-   GUI::BottomSidebar bottom_sidebar(0, WINDOW_HEIGHT - (WINDOW_HEIGHT / 6));
-      
-   kernel->addComponent(&bottom_sidebar);
+   kernel->addComponent(GUI::BottomSidebar::instance());
    
    kernel->setFramesPerSecond(60);
    kernel->run();
