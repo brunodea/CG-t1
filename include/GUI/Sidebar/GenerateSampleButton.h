@@ -5,12 +5,14 @@
 #include <SCV/Point.h>
 #include <string>
 
+#include <SCV/MouseEvent.h>
+
 namespace GUI
 {
    class GenerateSampleButton : public scv::Button
    {
    public:      
-      enum ButtonType
+      enum Type
       {
          RANDOM = 0, //generate a random sample.
          LINEAR //generate a linear sample.
@@ -18,12 +20,15 @@ namespace GUI
       }; //end of enum ButtonType.
 
    public:
-      GenerateSampleButton(const scv::Point &p, const std::string &label, ButtonType type);
+      GenerateSampleButton(const scv::Point &p, const std::string &label, Type type);
 
-      inline ButtonType &getType() { return m_Type; }
+      inline Type &getType() { return m_Type; }
 
    private:
-      ButtonType m_Type;
+      Type m_Type;
+
+   private:
+      void onMouseClick(const scv::MouseEvent &evt);
 
    }; //end of the class GenerateSampleButton
 } //end of the namespace GUI.
