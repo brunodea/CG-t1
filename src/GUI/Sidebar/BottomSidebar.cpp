@@ -19,6 +19,7 @@ BottomSidebar::BottomSidebar(int pos_x, int pos_y)
 
 BottomSidebar::~BottomSidebar()
 {
+   delete m_pSeparator;
    delete m_pSampleLabel;
    for(unsigned int i = 0; i < m_vSampleSpinners.size(); i++)
       delete m_vSampleSpinners[i];
@@ -61,12 +62,12 @@ void BottomSidebar::initSampleSpinners()
 
 void BottomSidebar::initGenerateSampleButtons()
 {
-   scv::Point p(500, 5);
-   GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::Type::RANDOM);
+   scv::Point p(500, 20);
+   GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::RANDOM);
    m_vGenerateSampleButtons.push_back(random_button);
 
    p.y += random_button->getHeight() + 5;
-   GenerateSampleButton *linear_button = new GenerateSampleButton(p, "Linear Values", GenerateSampleButton::Type::LINEAR);
+   GenerateSampleButton *linear_button = new GenerateSampleButton(p, "Linear Values", GenerateSampleButton::LINEAR);
    linear_button->setWidth(random_button->getWidth());
 
    this->addComponent(random_button);
@@ -75,9 +76,12 @@ void BottomSidebar::initGenerateSampleButtons()
 
 void BottomSidebar::initGUIMembers()
 {
-   m_pSampleLabel = new scv::Label(scv::Point(10, 5), "Sample Vector:");
+   m_pSampleLabel = new scv::Label(scv::Point(10, 5), "Sample Vector:");   
+   m_pSeparator = new scv::Separator(scv::Point(450, 10), scv::Separator::vertical, getHeight() - 20);
+
    this->addComponent(m_pSampleLabel);
-   
+   this->addComponent(m_pSeparator);
+
    initSampleSpinners();
    initGenerateSampleButtons();
    
@@ -98,7 +102,7 @@ void BottomSidebar::generateLinearSample()
 {
    srand((unsigned)time(NULL));
 
-   int first = (rand() % 10) + 1;
+   int first = (rand() % 20) + 1;
    for(unsigned int i = 0; i < m_vSampleSpinners.size(); i++)
    {
       SampleValueSpinner *spinner = m_vSampleSpinners.at(i);
