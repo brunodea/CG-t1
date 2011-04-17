@@ -39,6 +39,9 @@
     <ClCompile Include="..\src\GUI\Sidebar\SampleValueSpinner.cpp">
       <Filter>Source Files\GUI\Sidebar</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Sidebar\GenerateSampleButton.cpp">
+      <Filter>Source Files\GUI\Sidebar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
@@ -52,6 +55,9 @@
     </ClInclude>
     <ClInclude Include="..\include\DCT\dct.hpp">
       <Filter>Header Files\DCT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\GenerateSampleButton.h">
+      <Filter>Header Files\gui\Sidebar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

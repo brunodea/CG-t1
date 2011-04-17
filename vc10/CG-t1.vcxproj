@@ -12,12 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\GUI\Sidebar\BottomSidebar.cpp" />
+    <ClCompile Include="..\src\GUI\Sidebar\GenerateSampleButton.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\SampleValueSpinner.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\DCT\dct.hpp" />
     <ClInclude Include="..\include\GUI\Sidebar\BottomSidebar.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\GenerateSampleButton.h" />
     <ClInclude Include="..\include\GUI\Sidebar\SampleValueSpinner.h" />
     <ClInclude Include="..\include\macros.h" />
   </ItemGroup>
