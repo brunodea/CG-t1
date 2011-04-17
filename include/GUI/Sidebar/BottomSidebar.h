@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "SampleValueSpinner.h"
+#include "GenerateSampleButton.h"
 
 namespace GUI
 {
@@ -27,11 +28,14 @@ namespace GUI
       std::vector<SampleValueSpinner *> m_vSampleSpinners; //vetor com a amostra.
       int m_iElementsInSample; //numero de elementos na amostra (8 ou 16).      
 
+      std::vector<GenerateSampleButton *> m_vGenerateSampleButtons; //vetor com os botoes para geracao automatica da amostra.
+
       scv::Label *m_pSampleLabel;
 
    private:
       BottomSidebar(int pos_x, int pos_y); //contrutor privado pois se trata de um singleton.
       void initSampleSpinners();
+      void initGenerateSampleButtons();
       void initGUIMembers();
 
    }; //end of class BottomSidebar

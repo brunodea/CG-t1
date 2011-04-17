@@ -20,6 +20,8 @@ BottomSidebar::~BottomSidebar()
    delete m_pSampleLabel;
    for(unsigned int i = 0; i < m_vSampleSpinners.size(); i++)
       delete m_vSampleSpinners[i];
+   for(unsigned int i = 0; i < m_vGenerateSampleButtons.size(); i++)
+      delete m_vGenerateSampleButtons[i];
 }
 
 BottomSidebar *BottomSidebar::instance()
@@ -55,12 +57,22 @@ void BottomSidebar::initSampleSpinners()
    }
 }
 
+void BottomSidebar::initGenerateSampleButtons()
+{
+   scv::Point p(500, 5);
+   GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::ButtonType::RANDOM);
+   m_vGenerateSampleButtons.push_back(random_button);
+
+   this->addComponent(random_button);
+
+}
+
 void BottomSidebar::initGUIMembers()
 {
    m_pSampleLabel = new scv::Label(scv::Point(10, 5), "Sample Vector:");
    this->addComponent(m_pSampleLabel);
    
    initSampleSpinners();
-
+   initGenerateSampleButtons();
    
 }
