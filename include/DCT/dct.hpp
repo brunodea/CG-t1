@@ -8,7 +8,8 @@
 
 namespace DCT
 {
-   typedef std::vector<double> SignalVec; //Vector of signals.
+   typedef double SignalType;
+   typedef std::vector<SignalType> SignalVec; //Vector of signals.
 
    /*
     * Forward Discrete Cosine Transform.
