@@ -9,8 +9,21 @@ namespace GUI
 {
    class GenerateSampleButton : public scv::Button
    {
+   public:      
+      enum ButtonType
+      {
+         RANDOM = 0, //generate a random sample.
+         LINEAR //generate a linear sample.
+
+      }; //end of enum ButtonType.
+
    public:
-      GenerateSampleButton(const scv::Point &p, const std::string &label);
+      GenerateSampleButton(const scv::Point &p, const std::string &label, ButtonType type);
+
+      inline ButtonType &getType() { return m_Type; }
+
+   private:
+      ButtonType m_Type;
 
    }; //end of the class GenerateSampleButton
 } //end of the namespace GUI.
