@@ -22,6 +22,9 @@ namespace GUI
 
       inline int getNumberOfSamples() { return m_iElementsInSample; }
 
+      void generateRandomSample();
+      void generateLinearSample();
+
    private:
       static BottomSidebar *m_sInstance;
 

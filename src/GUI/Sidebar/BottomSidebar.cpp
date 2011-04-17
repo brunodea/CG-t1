@@ -2,6 +2,8 @@
 #include "../../../include/macros.h"
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <SCV/Point.h>
 
 using namespace GUI;
@@ -60,11 +62,15 @@ void BottomSidebar::initSampleSpinners()
 void BottomSidebar::initGenerateSampleButtons()
 {
    scv::Point p(500, 5);
-   GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::ButtonType::RANDOM);
+   GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::Type::RANDOM);
    m_vGenerateSampleButtons.push_back(random_button);
 
-   this->addComponent(random_button);
+   p.y += random_button->getHeight() + 5;
+   GenerateSampleButton *linear_button = new GenerateSampleButton(p, "Linear Values", GenerateSampleButton::Type::LINEAR);
+   linear_button->setWidth(random_button->getWidth());
 
+   this->addComponent(random_button);
+   this->addComponent(linear_button);
 }
 
 void BottomSidebar::initGUIMembers()
@@ -75,4 +81,27 @@ void BottomSidebar::initGUIMembers()
    initSampleSpinners();
    initGenerateSampleButtons();
    
+}
+
+void BottomSidebar::generateRandomSample()
+{
+   srand((unsigned)time(NULL));
+
+   for(unsigned int i = 0; i < m_vSampleSpinners.size(); i++)
+   {
+      SampleValueSpinner *spinner = m_vSampleSpinners.at(i);
+      spinner->setValue(rand() % 255);
+   }
+}
+
+void BottomSidebar::generateLinearSample()
+{
+   srand((unsigned)time(NULL));
+
+   int first = (rand() % 10) + 1;
+   for(unsigned int i = 0; i < m_vSampleSpinners.size(); i++)
+   {
+      SampleValueSpinner *spinner = m_vSampleSpinners.at(i);
+      spinner->setValue(first*(i + 1));
+   }
 }
