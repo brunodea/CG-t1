@@ -1,5 +1,5 @@
-#include "../../../include/GUI/Sidebar/BottomSidebar.h"
-#include "../../../include/macros.h"
+#include "GUI/Sidebar/BottomSidebar.h"
+#include "macros.h"
 
 #include <iostream>
 #include <cstdlib>

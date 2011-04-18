@@ -3,7 +3,7 @@
 
 #include <SCV/Spinner.h>
 #include <SCV/Point.h>
-#include "../../macros.h"
+#include "macros.h"
 
 namespace GUI
 {

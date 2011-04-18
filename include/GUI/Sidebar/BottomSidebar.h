@@ -10,8 +10,8 @@
 #include <SCV/Separator.h>
 #include <vector>
 
-#include "SampleValueSpinner.h"
-#include "GenerateSampleButton.h"
+#include "GUI/Sidebar/SampleValueSpinner.h"
+#include "GUI/Sidebar/GenerateSampleButton.h"
 
 namespace GUI
 {

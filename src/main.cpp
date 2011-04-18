@@ -7,9 +7,9 @@
 #include <SCV/Label.h>
 
 
-#include "../include/GUI/Sidebar/BottomSidebar.h"
-#include "../include/DCT/dct.hpp"
-#include "../include/macros.h"
+#include "GUI/Sidebar/BottomSidebar.h"
+#include "DCT/dct.hpp"
+#include "macros.h"
 
 #include <iostream>
 

@@ -1,5 +1,5 @@
-#include "../../../include/GUI/Sidebar/GenerateSampleButton.h"
-#include "../../../include/GUI/Sidebar/BottomSidebar.h"
+#include "GUI/Sidebar/GenerateSampleButton.h"
+#include "GUI/Sidebar/BottomSidebar.h"
 
 #include <iostream>
 

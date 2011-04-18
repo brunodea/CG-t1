@@ -1,9 +1,9 @@
-#include "../../../include/GUI/Sidebar/SampleValueSpinner.h"
+#include "GUI/Sidebar/SampleValueSpinner.h"
 
 #include <SCV/Point.h>
 #include <iostream>
 
-#include "../../../include/GUI/Sidebar/BottomSidebar.h"
+#include "GUI/Sidebar/BottomSidebar.h"
 
 using namespace GUI;
 
