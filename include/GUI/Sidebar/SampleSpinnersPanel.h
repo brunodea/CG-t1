@@ -10,7 +10,7 @@ namespace GUI
    class SampleSpinnersPanel : public scv::Panel
    {
    public:
-      SampleSpinnersPanel(const scv::Panel &panel);
+      SampleSpinnersPanel(const scv::Point &p, unsigned int width, unsigned int height);
       ~SampleSpinnersPanel();
 
       void addRow(); //adiciona uma linha com 8 spinners.

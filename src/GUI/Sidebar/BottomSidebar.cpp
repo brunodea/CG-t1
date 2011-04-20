@@ -12,7 +12,7 @@ using namespace GUI;
 BottomSidebar *BottomSidebar::m_sInstance = NULL;
 
 BottomSidebar::BottomSidebar(int pos_x, int pos_y)
-   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, WINDOW_HEIGHT / 4)
+   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, WINDOW_HEIGHT / 6)
 {
    initGUIMembers();
 }
@@ -29,7 +29,7 @@ BottomSidebar::~BottomSidebar()
 BottomSidebar *BottomSidebar::instance()
 {
    if(m_sInstance == NULL)
-      m_sInstance = new BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 4));
+      m_sInstance = new BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 6));
    return m_sInstance;
 }
 
@@ -49,12 +49,12 @@ void BottomSidebar::initGenerateSampleButtons()
 
 void BottomSidebar::initSpinnersPanel()
 {
-   scv::Panel *p = new scv::Panel(scv::Point(0, 0), 600, 200);
-   
-   SampleValueSpinner *aux = new SampleValueSpinner(30, 20);
-   p->addComponent(aux);
-   m_pSpinnersPanel = new SampleSpinnersPanel(*p);
-   scv::ScrollPane *sp = new scv::ScrollPane(scv::Point(10, 10), 
+	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*10, 150);
+	m_pSpinnersPanel->addRow();
+	m_pSpinnersPanel->addRow();
+	m_pSpinnersPanel->addRow();
+	m_pSpinnersPanel->addRow();
+    scv::ScrollPane *sp = new scv::ScrollPane(scv::Point(10, 10), 
       300, 130, m_pSpinnersPanel);
    this->addComponent(sp);
 }

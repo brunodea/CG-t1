@@ -6,10 +6,11 @@
 
 using namespace GUI;
 
-SampleSpinnersPanel::SampleSpinnersPanel(const scv::Panel &p)
-   : scv::Panel(p)
+SampleSpinnersPanel::SampleSpinnersPanel(const scv::Point &p, unsigned int width, unsigned int height)
+   : scv::Panel(p, width, height)
 {
    addRow(); //inicia com 8 spinners.
+   this->setVisible(true);
 }
 
 SampleSpinnersPanel::~SampleSpinnersPanel()
@@ -27,29 +28,21 @@ SampleSpinnersPanel::~SampleSpinnersPanel()
 
 void SampleSpinnersPanel::addRow()
 {
-   int y = 0;
+	int y = m_vvSpinners.size()*23;
    int x;
    int offset_x = SAMPLE_SPINNER_WIDTH / 2;
-   int offset_y = 23;
-   int col = 0;
    std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>();
    SampleValueSpinner *spinner_aux;
    for(int i = 0; i < 8; i++)
    {
-      if(i % 8 == 0)
-      {
-         y += offset_y;
-         col = 0;
-      }
-      x = col*SAMPLE_SPINNER_WIDTH + offset_x;
+      x = i*SAMPLE_SPINNER_WIDTH + offset_x;
       spinner_aux = new SampleValueSpinner(x, y);
       spinner_aux->setVecPos(i);
       this->addComponent(spinner_aux);
       v->push_back(spinner_aux);
-      col++;
    }
    m_vvSpinners.push_back(v);
-   //this->setHeight(50+m_vvSpinners.size()*spinner_aux->getHeight());
+   this->setHeight(50+m_vvSpinners.size()*spinner_aux->getHeight());
 }
 
 void SampleSpinnersPanel::generateRandomSample()
