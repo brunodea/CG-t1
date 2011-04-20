@@ -38,20 +38,30 @@ void BottomSidebar::initGenerateSampleButtons()
 {
    scv::Point p(m_pSampleScrollPanel->getRelativePosition().x + m_pSampleScrollPanel->getWidth() + 10, 20);
    GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::RANDOM);
-   m_vGenerateSampleButtons.push_back(random_button);
 
    p.y += random_button->getHeight() + 5;
    GenerateSampleButton *linear_button = new GenerateSampleButton(p, "Linear Values", GenerateSampleButton::LINEAR);
    linear_button->setWidth(random_button->getWidth());
 
+   p.y += random_button->getHeight() + 5;
+   GenerateSampleButton *add_row_button = new GenerateSampleButton(p, "Add Row", GenerateSampleButton::ADD_ROW);
+   add_row_button->setWidth(random_button->getWidth());
+
+   m_vGenerateSampleButtons.push_back(random_button);
+   m_vGenerateSampleButtons.push_back(linear_button);
+   m_vGenerateSampleButtons.push_back(add_row_button);
+
    this->addComponent(random_button);
    this->addComponent(linear_button);
+   this->addComponent(add_row_button);
 }
 
 void BottomSidebar::initSpinnersPanel()
 {
-	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*10.5, 150);
-   adjustSampleScrollPanel();
+	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*11, 150);
+   
+   m_pSampleScrollPanel = new scv::ScrollPane(scv::Point(100, 5), SAMPLE_SPINNER_WIDTH*12, 150, m_pSpinnersPanel);
+   this->addComponent(m_pSampleScrollPanel);
 }
 
 void BottomSidebar::initGUIMembers()
@@ -74,9 +84,9 @@ void BottomSidebar::generateLinearSample()
    m_pSpinnersPanel->generateRandomSample();
 }
 
-void BottomSidebar::adjustSampleScrollPanel()
+void BottomSidebar::addSampleRow()
 {
-   delete m_pSampleScrollPanel;
-   m_pSampleScrollPanel = new scv::ScrollPane(scv::Point(100, 0), SAMPLE_SPINNER_WIDTH*11.5, 120, m_pSpinnersPanel);
-   this->addComponent(m_pSampleScrollPanel);
+   m_pSpinnersPanel->addRow();   
+   m_pSampleScrollPanel->registerPanel(m_pSpinnersPanel);
+   m_pSampleScrollPanel->setHeight(120);
 }

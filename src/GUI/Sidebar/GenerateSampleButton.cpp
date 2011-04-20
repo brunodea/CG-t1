@@ -22,6 +22,8 @@ void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
       //std::cout << "Generate Linear Sample button clicked." << std::endl;
       BottomSidebar::instance()->generateLinearSample();
       break;
+   case ADD_ROW:
+      BottomSidebar::instance()->addSampleRow();
    }
 }
 

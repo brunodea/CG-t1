@@ -27,6 +27,8 @@ namespace GUI
       void generateLinearSample();
       void adjustSampleScrollPanel();
 
+      void addSampleRow();
+
    private:
       static BottomSidebar *m_sInstance;     
 

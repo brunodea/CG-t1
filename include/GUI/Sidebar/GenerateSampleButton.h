@@ -15,7 +15,8 @@ namespace GUI
       enum Type
       {
          RANDOM = 0, //generate a random sample.
-         LINEAR //generate a linear sample.
+         LINEAR, //generate a linear sample.
+         ADD_ROW //add a row to the sample.
 
       }; //end of enum ButtonType.
 
