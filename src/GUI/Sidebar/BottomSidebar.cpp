@@ -49,11 +49,7 @@ void BottomSidebar::initGenerateSampleButtons()
 
 void BottomSidebar::initSpinnersPanel()
 {
-	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*10, 150);
-	m_pSpinnersPanel->addRow();
-	m_pSpinnersPanel->addRow();
-	m_pSpinnersPanel->addRow();
-	m_pSpinnersPanel->addRow();
+	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*11, 150);
     scv::ScrollPane *sp = new scv::ScrollPane(scv::Point(10, 10), 
       300, 130, m_pSpinnersPanel);
    this->addComponent(sp);

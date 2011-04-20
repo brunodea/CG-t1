@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <sstream>
 
+#include <SCV/Label.h>
 using namespace GUI;
 
 SampleSpinnersPanel::SampleSpinnersPanel(const scv::Point &p, unsigned int width, unsigned int height)
@@ -28,18 +30,25 @@ SampleSpinnersPanel::~SampleSpinnersPanel()
 
 void SampleSpinnersPanel::addRow()
 {
-	int y = m_vvSpinners.size()*23;
-   int x;
-   int offset_x = SAMPLE_SPINNER_WIDTH / 2;
+   unsigned int spinnersSize = m_vvSpinners.size();
+	int y = spinnersSize*23;
+   int x = 10;
+   int offset_x = 15;
    std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>();
    SampleValueSpinner *spinner_aux;
    for(int i = 0; i < 8; i++)
    {
-      x = i*SAMPLE_SPINNER_WIDTH + offset_x;
-      spinner_aux = new SampleValueSpinner(x, y);
-      spinner_aux->setVecPos(i);
+      int pos = (spinnersSize*8) + i;
+      std::stringstream ss;
+      ss << pos;
+      scv::Label *label = new scv::Label(scv::Point(x, y + 3), ss.str());
+      this->addComponent(label);
+      spinner_aux = new SampleValueSpinner(x + label->getWidth(), y);
+      spinner_aux->setVecPos(pos);
+
       this->addComponent(spinner_aux);
       v->push_back(spinner_aux);
+      x += SAMPLE_SPINNER_WIDTH + offset_x;
    }
    m_vvSpinners.push_back(v);
    this->setHeight(50+m_vvSpinners.size()*spinner_aux->getHeight());
