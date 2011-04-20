@@ -7,15 +7,18 @@
 
 namespace GUI
 {
-	class SampleSpinnersPanel : public scv::Panel
-	{
-	public:
-		SampleSpinnersPanel(const scv::Panel &panel);
+   class SampleSpinnersPanel : public scv::Panel
+   {
+   public:
+      SampleSpinnersPanel(const scv::Panel &panel);
+      ~SampleSpinnersPanel();
 
-	private:
-		std::vector<std::vector<SampleValueSpinner> *> m_vvSpinners;
+      void addRow(); //adiciona uma linha com 8 spinners.
 
-	}; //end of class SampleSpinnersPanel.
+   private:
+      std::vector<std::vector<SampleValueSpinner *> *> m_vvSpinners;
+
+   }; //end of class SampleSpinnersPanel.
 } //end of namespace GUI.
 
 #endif
