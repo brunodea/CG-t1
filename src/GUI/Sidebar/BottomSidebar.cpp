@@ -12,8 +12,9 @@ using namespace GUI;
 BottomSidebar *BottomSidebar::m_sInstance = NULL;
 
 BottomSidebar::BottomSidebar(int pos_x, int pos_y)
-   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, WINDOW_HEIGHT / 6)
+   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, WINDOW_HEIGHT / 5)
 {
+   m_pSampleScrollPanel = NULL;
    initGUIMembers();
 }
 
@@ -29,7 +30,7 @@ BottomSidebar::~BottomSidebar()
 BottomSidebar *BottomSidebar::instance()
 {
    if(m_sInstance == NULL)
-      m_sInstance = new BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 6));
+      m_sInstance = new BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 5));
    return m_sInstance;
 }
 
@@ -50,8 +51,7 @@ void BottomSidebar::initGenerateSampleButtons()
 void BottomSidebar::initSpinnersPanel()
 {
 	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*10.5, 150);
-   m_pSampleScrollPanel = new scv::ScrollPane(scv::Point(100, 0), SAMPLE_SPINNER_WIDTH*11.5, 150, m_pSpinnersPanel);
-   this->addComponent(m_pSampleScrollPanel);
+   adjustSampleScrollPanel();
 }
 
 void BottomSidebar::initGUIMembers()
@@ -72,4 +72,11 @@ void BottomSidebar::generateRandomSample()
 void BottomSidebar::generateLinearSample()
 {
    m_pSpinnersPanel->generateRandomSample();
+}
+
+void BottomSidebar::adjustSampleScrollPanel()
+{
+   delete m_pSampleScrollPanel;
+   m_pSampleScrollPanel = new scv::ScrollPane(scv::Point(100, 0), SAMPLE_SPINNER_WIDTH*11.5, 120, m_pSpinnersPanel);
+   this->addComponent(m_pSampleScrollPanel);
 }
