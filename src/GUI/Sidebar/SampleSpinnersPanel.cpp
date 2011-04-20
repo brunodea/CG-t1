@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 using namespace GUI;
 
@@ -31,7 +32,8 @@ void SampleSpinnersPanel::addRow()
    int offset_x = SAMPLE_SPINNER_WIDTH / 2;
    int offset_y = 23;
    int col = 0;
-   std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>(8);
+   std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>();
+   SampleValueSpinner *spinner_aux;
    for(int i = 0; i < 8; i++)
    {
       if(i % 8 == 0)
@@ -40,13 +42,14 @@ void SampleSpinnersPanel::addRow()
          col = 0;
       }
       x = col*SAMPLE_SPINNER_WIDTH + offset_x;
-      SampleValueSpinner *s = new SampleValueSpinner(x, y);
-      s->setVecPos(i);
-      this->addComponent(s);
-      v->push_back(s);
+      spinner_aux = new SampleValueSpinner(x, y);
+      spinner_aux->setVecPos(i);
+      this->addComponent(spinner_aux);
+      v->push_back(spinner_aux);
       col++;
    }
    m_vvSpinners.push_back(v);
+   //this->setHeight(50+m_vvSpinners.size()*spinner_aux->getHeight());
 }
 
 void SampleSpinnersPanel::generateRandomSample()
