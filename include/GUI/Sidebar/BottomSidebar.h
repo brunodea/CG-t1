@@ -8,6 +8,7 @@
 #include <SCV/Panel.h>
 #include <SCV/Label.h>
 #include <SCV/Separator.h>
+#include <SCV/ScrollPane.h>
 #include <vector>
 
 #include "GUI/Sidebar/SampleValueSpinner.h"
@@ -32,7 +33,7 @@ namespace GUI
       std::vector<GenerateSampleButton *> m_vGenerateSampleButtons; //vetor com os botoes para geracao automatica da amostra.
 
       scv::Label *m_pSampleLabel;
-      scv::Separator *m_pSeparator;
+      scv::ScrollPane *m_pSampleScrollPanel;
 
    private:
       BottomSidebar(int pos_x, int pos_y); //contrutor privado pois se trata de um singleton.

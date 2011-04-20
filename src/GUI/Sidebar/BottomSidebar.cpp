@@ -19,11 +19,11 @@ BottomSidebar::BottomSidebar(int pos_x, int pos_y)
 
 BottomSidebar::~BottomSidebar()
 {
-   delete m_pSeparator;
    delete m_pSampleLabel;
    for(unsigned int i = 0; i < m_vGenerateSampleButtons.size(); i++)
       delete m_vGenerateSampleButtons[i];
    delete m_pSpinnersPanel;
+   delete m_pSampleScrollPanel;
 }
 
 BottomSidebar *BottomSidebar::instance()
@@ -35,7 +35,7 @@ BottomSidebar *BottomSidebar::instance()
 
 void BottomSidebar::initGenerateSampleButtons()
 {
-   scv::Point p(600, 20);
+   scv::Point p(m_pSampleScrollPanel->getRelativePosition().x + m_pSampleScrollPanel->getWidth() + 10, 20);
    GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::RANDOM);
    m_vGenerateSampleButtons.push_back(random_button);
 
@@ -49,22 +49,19 @@ void BottomSidebar::initGenerateSampleButtons()
 
 void BottomSidebar::initSpinnersPanel()
 {
-	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*11, 150);
-    scv::ScrollPane *sp = new scv::ScrollPane(scv::Point(10, 10), 
-      300, 130, m_pSpinnersPanel);
-   this->addComponent(sp);
+	m_pSpinnersPanel = new SampleSpinnersPanel(scv::Point(0, 0), SAMPLE_SPINNER_WIDTH*10.5, 150);
+   m_pSampleScrollPanel = new scv::ScrollPane(scv::Point(100, 0), SAMPLE_SPINNER_WIDTH*11.5, 150, m_pSpinnersPanel);
+   this->addComponent(m_pSampleScrollPanel);
 }
 
 void BottomSidebar::initGUIMembers()
 {
-   //m_pSampleLabel = new scv::Label(scv::Point(10, 5), "Sample Vector:");   
-   //m_pSeparator = new scv::Separator(scv::Point(450, 10), scv::Separator::vertical, getHeight() - 20);
+   m_pSampleLabel = new scv::Label(scv::Point(10, 5), "Sample Vector:");   
 
-   //this->addComponent(m_pSampleLabel);
-   //this->addComponent(m_pSeparator);
+   this->addComponent(m_pSampleLabel);
 
+   initSpinnersPanel();
    initGenerateSampleButtons();
-   initSpinnersPanel();   
 }
 
 void BottomSidebar::generateRandomSample()

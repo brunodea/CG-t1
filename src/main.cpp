@@ -57,5 +57,7 @@ int main(int argc, char *argv[])
    kernel->setFramesPerSecond(60);
    kernel->run();
 
+   delete GUI::BottomSidebar::instance();
+
 	return 0;
 }
