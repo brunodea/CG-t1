@@ -1,5 +1,8 @@
 #include "GUI/Sidebar/SampleSpinnersPanel.h"
 
+#include <cstdlib>
+#include <ctime>
+
 using namespace GUI;
 
 SampleSpinnersPanel::SampleSpinnersPanel(const scv::Panel &p)
@@ -44,4 +47,28 @@ void SampleSpinnersPanel::addRow()
       col++;
    }
    m_vvSpinners.push_back(v);
+}
+
+void SampleSpinnersPanel::generateRandomSample()
+{
+   srand((unsigned)time(NULL));
+   for(unsigned int i = 0; i < m_vvSpinners.size(); i++)
+   {
+      std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
+      for(unsigned int j = 0; j < v->size(); j++)
+         v->at(j)->setValue(rand() % 256);
+   }
+}
+
+void SampleSpinnersPanel::generateLinearSample()
+{
+   srand((unsigned)time(NULL));
+
+   int first = (rand() % 20) + 1;
+   for(unsigned int i = 0; i < m_vvSpinners.size(); i++)
+   {
+      std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
+      for(unsigned int j = 0; j < v->size(); j++)
+         v->at(j)->setValue(first*(i + 1)*0.5);
+   }
 }

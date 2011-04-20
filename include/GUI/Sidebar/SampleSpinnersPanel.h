@@ -14,6 +14,8 @@ namespace GUI
       ~SampleSpinnersPanel();
 
       void addRow(); //adiciona uma linha com 8 spinners.
+      void generateRandomSample();
+      void generateLinearSample();
 
    private:
       std::vector<std::vector<SampleValueSpinner *> *> m_vvSpinners;
