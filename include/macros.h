@@ -12,4 +12,6 @@
 
 #define BOTTOM_SIDEBAR_HEIGHT (WINDOW_HEIGHT / 5)
 
+#define DCTVIEWER brunodea::DCTViewer::instance()
+
 #endif

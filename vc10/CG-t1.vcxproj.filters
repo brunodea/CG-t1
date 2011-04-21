@@ -28,6 +28,12 @@
     <Filter Include="Header Files\gui\Sidebar">
       <UniqueIdentifier>{deb34581-aeae-4494-8efb-104239094ed4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gui\Canvas">
+      <UniqueIdentifier>{4542ce13-f6a8-4a39-9dad-fd6069ac9bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI\Canvas">
+      <UniqueIdentifier>{5749f8f8-0bf1-4ed8-a84e-3af58d37811f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -44,6 +50,12 @@
     </ClCompile>
     <ClCompile Include="..\src\GUI\Sidebar\SampleSpinnersPanel.cpp">
       <Filter>Source Files\GUI\Sidebar</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\GraphsCanvas.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DCTViewer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="..\include\GUI\Sidebar\SampleSpinnersPanel.h">
       <Filter>Header Files\gui\Sidebar</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\GraphsCanvas.h">
+      <Filter>Header Files\gui\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DCTViewer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

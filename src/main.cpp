@@ -9,6 +9,7 @@
 
 #include "GUI/Sidebar/BottomSidebar.h"
 #include "DCT/dct.hpp"
+#include "DCTViewer.h"
 #include "macros.h"
 
 #include <iostream>
@@ -51,13 +52,13 @@ int main(int argc, char *argv[])
    color_scheme->loadScheme(scv::ColorScheme::clean);
    kernel->setWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
    kernel->lockWindowSize(true);
-
-   kernel->addComponent(GUI::BottomSidebar::instance());
    
+   brunodea::DCTViewer::instance(); //para inicializar o dctviewer.
+
    kernel->setFramesPerSecond(60);
    kernel->run();
 
-   delete GUI::BottomSidebar::instance();
+   delete brunodea::DCTViewer::instance();
 
 	return 0;
 }

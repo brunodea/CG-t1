@@ -1,5 +1,6 @@
 #include "GUI/Sidebar/GenerateSampleButton.h"
-#include "GUI/Sidebar/BottomSidebar.h"
+#include "DCTViewer.h"
+#include "macros.h"
 
 #include <iostream>
 
@@ -15,15 +16,13 @@ void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
    switch(getType())
    {
    case RANDOM:
-      //std::cout << "Generate Random Sample button clicked." << std::endl;
-      BottomSidebar::instance()->generateRandomSample();
+      DCTVIEWER->getBottomSidebar()->generateRandomSample();
       break;
    case LINEAR:
-      //std::cout << "Generate Linear Sample button clicked." << std::endl;
-      BottomSidebar::instance()->generateLinearSample();
+      DCTVIEWER->getBottomSidebar()->generateLinearSample();
       break;
    case ADD_ROW:
-      BottomSidebar::instance()->addSampleRow();
+      DCTVIEWER->getBottomSidebar()->addSampleRow();
    }
 }
 
