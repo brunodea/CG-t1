@@ -5,17 +5,24 @@
 #include <SCV/Color4f.h>
 #include <SCV/Canvas.h>
 
+#include "macros.h"
+
+#include <string>
+#include <iostream>
+
 namespace GUI
 {
    class GraphPoint
    {
    public:
       GraphPoint(const scv::Point &p)
-         : m_Pos(p), m_Color(0.f, 1.f, 0.f), m_iHalfWidth(5), m_iHalfHeight(5)
+         : m_Pos(p), m_Color(0.f, 1.f, 0.f), m_iHalfWidth(GRAPH_POINT_WIDTH/2), 
+           m_iHalfHeight(GRAPH_POINT_HEIGHT/2)           
       {}
 
       GraphPoint(const scv::Point &p, const scv::Color4f &c)
-         : m_Pos(p), m_Color(c), m_iHalfWidth(5), m_iHalfHeight(5)
+         : m_Pos(p), m_Color(c), m_iHalfWidth(GRAPH_POINT_WIDTH/2), 
+           m_iHalfHeight(GRAPH_POINT_HEIGHT/2)
       {}
 
       void draw()
@@ -28,9 +35,10 @@ namespace GUI
             glVertex2i(m_Pos.x + m_iHalfWidth, m_Pos.y + m_iHalfHeight);
          glEnd();
       }
+   public:
+      scv::Point m_Pos;
 
    private:
-      scv::Point m_Pos;
       scv::Color4f m_Color;
 
       int m_iHalfWidth;
