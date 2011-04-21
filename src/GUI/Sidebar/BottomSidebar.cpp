@@ -12,7 +12,7 @@ using namespace GUI;
 BottomSidebar *BottomSidebar::m_sInstance = NULL;
 
 BottomSidebar::BottomSidebar(int pos_x, int pos_y)
-   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, WINDOW_HEIGHT / 5)
+   : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, BOTTOM_SIDEBAR_HEIGHT)
 {
    m_pSampleScrollPanel = NULL;
    initGUIMembers();
