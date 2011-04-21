@@ -81,7 +81,7 @@ void BottomSidebar::generateRandomSample()
 
 void BottomSidebar::generateLinearSample()
 {
-   m_pSpinnersPanel->generateRandomSample();
+   m_pSpinnersPanel->generateLinearSample();
 }
 
 void BottomSidebar::addSampleRow()

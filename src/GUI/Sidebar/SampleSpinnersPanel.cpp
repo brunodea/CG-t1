@@ -83,6 +83,8 @@ void SampleSpinnersPanel::generateLinearSample()
    {
       std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
       for(unsigned int j = 0; j < v->size(); j++)
-         v->at(j)->setValue(first*(i + 1)*0.5);
+      {
+         v->at(j)->setValue(first*(((i + 1)*8) + j)*0.1);
+      }
    }
 }
