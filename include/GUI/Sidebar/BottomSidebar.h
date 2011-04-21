@@ -1,6 +1,6 @@
 /**
   * BottomSidebar eh um panel que fica na parte inferior da tela. Nele ficam os spinners que representam
-  * a amostra. Como soh pode existir um BottomSidebar, ele eh singleton.
+  * a amostra.
  **/
 #ifndef _BRUNODEA_CG_T1_BOTTOM_SIDEBAR_PANE_
 #define _BRUNODEA_CG_T1_BOTTOM_SIDEBAR_PANE_
@@ -20,7 +20,7 @@ namespace GUI
    class BottomSidebar : public scv::Panel
    {
    public:
-      static BottomSidebar *instance(); //Retorna a unica instancia da classe.
+      BottomSidebar(int pos_x, int pos_y);
       ~BottomSidebar();
       
       void generateRandomSample();
@@ -29,8 +29,7 @@ namespace GUI
 
       void addSampleRow();
 
-   private:
-      static BottomSidebar *m_sInstance;     
+   private: 
 
       SampleSpinnersPanel *m_pSpinnersPanel;
       std::vector<GenerateSampleButton *> m_vGenerateSampleButtons; //vetor com os botoes para geracao automatica da amostra.
@@ -39,10 +38,10 @@ namespace GUI
       scv::ScrollPane *m_pSampleScrollPanel;
 
    private:
-      BottomSidebar(int pos_x, int pos_y); //contrutor privado pois se trata de um singleton.
       void initGenerateSampleButtons();
       void initSpinnersPanel();
       void initGUIMembers();
+
    }; //end of class BottomSidebar
 } //end of namespace GUI.
 

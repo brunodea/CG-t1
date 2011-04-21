@@ -9,8 +9,6 @@
 
 using namespace GUI;
 
-BottomSidebar *BottomSidebar::m_sInstance = NULL;
-
 BottomSidebar::BottomSidebar(int pos_x, int pos_y)
    : scv::Panel(scv::Point(pos_x, pos_y), WINDOW_WIDTH, BOTTOM_SIDEBAR_HEIGHT)
 {
@@ -25,13 +23,6 @@ BottomSidebar::~BottomSidebar()
       delete m_vGenerateSampleButtons[i];
    delete m_pSpinnersPanel;
    delete m_pSampleScrollPanel;
-}
-
-BottomSidebar *BottomSidebar::instance()
-{
-   if(m_sInstance == NULL)
-      m_sInstance = new BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 5));
-   return m_sInstance;
 }
 
 void BottomSidebar::initGenerateSampleButtons()
