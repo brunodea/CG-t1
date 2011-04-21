@@ -31,9 +31,18 @@ SampleSpinnersPanel::~SampleSpinnersPanel()
 void SampleSpinnersPanel::addRow()
 {
    unsigned int spinnersSize = m_vvSpinners.size();
+
+   //125, pois 1000/8 é 125. Limitando em 125 rows significa permitir
+   //no máximo 1000 spinners.
+   if(spinnersSize >= 125)
+   {
+      std::cout << "Limit number of rows of spinners reached." << std::endl;
+      return;
+   }
+
 	int y = spinnersSize*23;
-   int x = 10;
-   int offset_x = 15;
+   int x = 5;
+   int offset_x = 18;
    std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>();
    SampleValueSpinner *spinner_aux;
    for(int i = 0; i < 8; i++)
@@ -43,7 +52,7 @@ void SampleSpinnersPanel::addRow()
       ss << pos;
       scv::Label *label = new scv::Label(scv::Point(x, y + 3), ss.str());
       this->addComponent(label);
-      spinner_aux = new SampleValueSpinner(x + label->getWidth(), y);
+      spinner_aux = new SampleValueSpinner(x + 18, y);
       spinner_aux->setVecPos(pos);
 
       this->addComponent(spinner_aux);
@@ -51,7 +60,7 @@ void SampleSpinnersPanel::addRow()
       x += SAMPLE_SPINNER_WIDTH + offset_x;
    }
    m_vvSpinners.push_back(v);
-   this->setHeight(50+m_vvSpinners.size()*spinner_aux->getHeight());
+   this->setHeight(y+spinner_aux->getHeight());
 }
 
 void SampleSpinnersPanel::generateRandomSample()
