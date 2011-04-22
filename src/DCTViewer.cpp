@@ -16,12 +16,21 @@ DCTViewer::DCTViewer()
    m_pBottomSidebar = new GUI::BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 5));
    m_pGraphsCanvas = new GUI::GraphsCanvas(scv::Point(0, 0));
 
+   m_pCanvasPanel = new scv::Panel(scv::Point(0, 0), WINDOW_WIDTH, WINDOW_HEIGHT - BOTTOM_SIDEBAR_HEIGHT);
+   m_pCanvasPanel->addComponent(m_pGraphsCanvas);
+
+   m_pCanvasScrollPane = new scv::ScrollPane(scv::Point(0, 0), WINDOW_WIDTH, WINDOW_HEIGHT - BOTTOM_SIDEBAR_HEIGHT, m_pCanvasPanel);
+
+   scv::Kernel::getInstance()->addComponent(m_pCanvasScrollPane);
    scv::Kernel::getInstance()->addComponent(m_pBottomSidebar);
-   scv::Kernel::getInstance()->addComponent(m_pGraphsCanvas);
 }
 
 DCTViewer::~DCTViewer()
 {
+   delete m_pCanvasPanel;
+   m_pCanvasPanel = NULL;
+   delete m_pCanvasScrollPane;
+
    delete m_pBottomSidebar;
    delete m_pGraphsCanvas;
 
@@ -178,4 +187,9 @@ std::vector<double> &DCTViewer::idct(std::vector<double> &signal)
    }
 
    return *original;
+}
+
+void DCTViewer::adjustCanvasPanel()
+{
+   //m_pCanvasScrollPane->set
 }

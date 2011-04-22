@@ -1,6 +1,9 @@
 #ifndef _BRUNODEA_DCTVIEWER_H_
 #define _BRUNODEA_DCTVIEWER_H_
 
+#include <SCV/ScrollPane.h>
+#include <SCV/Panel.h>
+
 #include <vector>
 #include "GUI/Sidebar/BottomSidebar.h"
 #include "GUI/Canvas/GraphsCanvas.h"
@@ -22,6 +25,8 @@ namespace brunodea
       void adjustFDCTSignals();
       void adjustIDCTSignals();
 
+      void adjustCanvasPanel();
+
       void addSignalVec(std::vector<double> *sv);
       void addSignalVec();
             
@@ -37,6 +42,9 @@ namespace brunodea
       std::vector<std::vector<double> *> *m_pSignals;
       std::vector<std::vector<double> *> *m_pFDCTSignals;
       std::vector<std::vector<double> *> *m_pIDCTSignals;
+
+      scv::ScrollPane *m_pCanvasScrollPane;
+      scv::Panel *m_pCanvasPanel;
 
    private:
       DCTViewer();
