@@ -24,6 +24,11 @@ void Graph::setScale(const double &scale)
    m_Scale = scale;
    m_XLength *= m_Scale;
    m_YLength *= m_Scale;
+
+   if(m_XLength < 0)
+      m_XLength *= -1;
+   if(m_YLength < 0)
+      m_YLength *= -1;
 }
 
 void Graph::addPoints(const std::vector<GraphPoint *> &points)
@@ -33,9 +38,11 @@ void Graph::addPoints(const std::vector<GraphPoint *> &points)
 
 void Graph::adjustPoint(unsigned int row, unsigned int col)
 {
+   double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
    int pos = (row*8) + col;
    GraphPoint *pt = m_vpPoints->at(pos);
-   pt->m_Pos.y = -DCTVIEWER->getSignals()->at(row)->at(col) + m_Pos0x0.y;
+   pt->m_Pos.y = -(y_spacement*DCTVIEWER->getSignals()->at(row)->at(col))
+      + m_Pos0x0.y;
 }
 
 void Graph::adjustPoints()
@@ -44,7 +51,8 @@ void Graph::adjustPoints()
    unsigned int pointsSize = m_vpPoints->size();
    double x_spacement = (double)m_XLength/signalsSize;
    unsigned int size = DCTVIEWER->getSignals()->size();
-
+   
+   double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
    for(unsigned int i = 0; i < pointsSize; i++)
    {
       double x = (x_spacement*i) + m_Pos0x0.x;
@@ -53,7 +61,8 @@ void Graph::adjustPoints()
 
       int row = i/8;
       int col = i%8;
-      pt->m_Pos.y = -DCTVIEWER->getSignals()->at(row)->at(col) + m_Pos0x0.y;
+      pt->m_Pos.y = -(y_spacement*DCTVIEWER->getSignals()->at(row)->at(col))
+         + m_Pos0x0.y;
       pt->m_Pos.x = x;
    }
 }
@@ -65,6 +74,7 @@ void Graph::insertPoints()
    if(signalsSize > pointsSize)
    {
       double x_spacement = (double)m_XLength/signalsSize;
+      double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
       unsigned int size = DCTVIEWER->getSignals()->size();
 
       adjustPoints();
@@ -76,7 +86,7 @@ void Graph::insertPoints()
          for(unsigned int j = 0; j < v->size(); j++)
          {
             double x = (x_spacement*((i*8)+j)) + m_Pos0x0.x; //pega a posicao do sinal na matriz.
-            double y = -v->at(j) + m_Pos0x0.y;
+            double y = -(y_spacement*v->at(j)) + m_Pos0x0.y;
             GraphPoint *pt = new GraphPoint(scv::Point(x, y));
             points->push_back(pt);
          }
@@ -118,15 +128,15 @@ void Graph::drawAxis()
 
 void Graph::drawPoints()
 {
-   //para o caso de ter apenas 1 ponto...
    unsigned int size = m_vpPoints->size();
+   //para o caso de ter apenas 1 ponto...
    if(size < 2)
    {
       if(size > 0)
          m_vpPoints->at(0)->draw();
       return;
    }
-
+   
    for(unsigned int i = 0; i < size - 1; i++)
    {
       scv::Point p1 = m_vpPoints->at(i)->m_Pos;
