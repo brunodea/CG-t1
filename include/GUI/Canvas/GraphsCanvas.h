@@ -20,6 +20,7 @@ namespace GUI
       ~GraphsCanvas();
 
       inline Graph *getOrigSampleGraph() { return m_pOrigSampleGraph; }
+      inline Graph *getFDCTGraph() { return m_pFDCTGraph; }
 
       void render();
       void update();

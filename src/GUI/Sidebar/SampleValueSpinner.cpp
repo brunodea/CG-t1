@@ -31,4 +31,5 @@ void SampleValueSpinner::onValueChange()
    *orig = this->getValue();
 
    DCTVIEWER->getGraphsCanvas()->getOrigSampleGraph()->adjustPoint(row, col);
+   DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoint(row, col);
 }

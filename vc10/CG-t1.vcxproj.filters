@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\DCT">
-      <UniqueIdentifier>{069cc3d7-dc1f-4361-a712-6cc29099b2d1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{32a4a299-c461-4cab-9a65-698710b3a21c}</UniqueIdentifier>
     </Filter>
@@ -70,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="..\include\GUI\Sidebar\SampleValueSpinner.h">
       <Filter>Header Files\gui\Sidebar</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\DCT\dct.hpp">
-      <Filter>Header Files\DCT</Filter>
     </ClInclude>
     <ClInclude Include="..\include\GUI\Sidebar\GenerateSampleButton.h">
       <Filter>Header Files\gui\Sidebar</Filter>

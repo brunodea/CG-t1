@@ -20,6 +20,9 @@ namespace brunodea
 
       void addSignalVec(std::vector<double> *sv);
       void addSignalVec();
+            
+      static std::vector<double> &fdct(std::vector<double> &sample);
+      static std::vector<double> &idct(std::vector<double> &signal);
 
    private:
       static DCTViewer *m_sInstance;
