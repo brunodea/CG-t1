@@ -8,15 +8,12 @@
 
 namespace DCT
 {
-   typedef double SignalType;
-   typedef std::vector<SignalType> SignalVec; //Vector of signals.
-
    /*
     * Forward Discrete Cosine Transform.
    */
-   SignalVec &fdct(const SignalVec &sample)
+   std::vector<double> &fdct(const std::vector<double> &sample)
    {      
-      SignalVec *result = new SignalVec();
+      std::vector<double> *result = new std::vector<double>();
 
       unsigned int n = sample.size();
       double f_u;
@@ -41,9 +38,9 @@ namespace DCT
    /*
     * Inverse Discrete Cosine Transform.
    */
-   SignalVec &idct(const SignalVec &signal)
+   std::vector<double> &idct(const std::vector<double> &signal)
    {
-      SignalVec *original = new SignalVec();
+      std::vector<double> *original = new std::vector<double>();
     
       int n = signal.size();
       double c_j;
