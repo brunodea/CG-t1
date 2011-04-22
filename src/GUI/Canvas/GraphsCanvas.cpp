@@ -57,11 +57,13 @@ void GraphsCanvas::onMouseWheel(const scv::MouseEvent &evt)
    {
       double new_scale = m_pOrigSampleGraph->getScale() + 0.1;
       m_pOrigSampleGraph->setScale(new_scale);
+      DCTVIEWER->adjustCanvasPanel();
    }
    else if(evt.getState() == evt.wheeldown)
    {
       double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
       m_pOrigSampleGraph->setScale(new_scale);
+      DCTVIEWER->adjustCanvasPanel();
    }
 }
 
@@ -71,10 +73,12 @@ void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
    {
       double new_scale = m_pOrigSampleGraph->getScale() + 0.1;
       m_pOrigSampleGraph->setScale(new_scale);
+      DCTVIEWER->adjustCanvasPanel();
    }
    else if(evt.getKeyCode() == '-')
    {
       double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
       m_pOrigSampleGraph->setScale(new_scale);
+      DCTVIEWER->adjustCanvasPanel();
    }
 }

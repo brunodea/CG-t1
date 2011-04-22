@@ -1,4 +1,5 @@
 #include "DCTViewer.h"
+#include "GUI/Canvas/Graph.h"
 
 #include <SCV/Point.h>
 #include <SCV/Kernel.h>
@@ -191,5 +192,13 @@ std::vector<double> &DCTViewer::idct(std::vector<double> &signal)
 
 void DCTViewer::adjustCanvasPanel()
 {
-   //m_pCanvasScrollPane->set
+   GUI::Graph *idctGraph = getGraphsCanvas()->getIDCTGraph();
+   double width = idctGraph->m_Pos0x0.x + (idctGraph->getScale()*idctGraph->m_XLength) + 100;
+
+   if(width < WINDOW_WIDTH)
+      return;
+   
+   m_pGraphsCanvas->setWidth(width);
+   m_pCanvasPanel->setWidth(width);
+   m_pCanvasScrollPane->registerPanel(m_pCanvasPanel);
 }

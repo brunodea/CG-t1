@@ -24,10 +24,7 @@ namespace GUI
       void setScale(const double &scale);
       inline double &getScale() { return m_Scale; }
 
-      inline void setSignals(std::vector<std::vector<double> *> *signals)
-      {
-         m_vvpSignals = signals;
-      }
+      inline void setSignals(std::vector<std::vector<double> *> *signals) { m_vvpSignals = signals; }
 
    public:
       scv::Point m_Pos0x0;
