@@ -22,10 +22,11 @@ Graph::~Graph()
 
 void Graph::setScale(const double &scale)
 {
-   if(scale < 0.3)
+   if(scale < 0.3 || scale == m_Scale)
       return;
 
    m_Scale = scale;
+   adjustPoints();
 }
 
 void Graph::addPoints(const std::vector<GraphPoint *> &points)
