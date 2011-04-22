@@ -4,6 +4,7 @@
 #include <SCV/Canvas.h>
 #include <SCV/Point.h>
 #include <SCV/Color4f.h>
+#include <SCV/MouseEvent.h>
 #include "GUI/Canvas/GraphPoint.hpp"
 #include "GUI/Canvas/Graph.h"
 
@@ -21,6 +22,9 @@ namespace GUI
 
       void render();
       void update();
+   protected:
+      void onMouseWheel(const scv::MouseEvent &evt);
+
    private:
       scv::Color4f m_bgColor;
       Graph *m_pOrigSampleGraph;

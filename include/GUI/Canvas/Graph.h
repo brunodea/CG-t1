@@ -16,22 +16,25 @@ namespace GUI
 
       void addPoints(const std::vector<GraphPoint *> &points);
       void adjustPoint(unsigned int row, unsigned int col);
+      void adjustPoints();
       void draw();
+
+      void setScale(const double &scale);
+      inline double &getScale() { return m_Scale; }
 
    public:
       scv::Point m_Pos0x0;
-      unsigned int m_XLength;
-      unsigned int m_YLength;
+      double m_XLength;
+      double m_YLength;
 
    private:
       std::vector<GraphPoint *> *m_vpPoints;
-
+      double m_Scale;
 
    private:
       void drawAxis();
       void drawPoints();
       
-      void adjustPoints();
       void insertPoints();
       void cleanPoints();
 

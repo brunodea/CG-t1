@@ -25,3 +25,18 @@ void GraphsCanvas::render()
    glClear(GL_COLOR_BUFFER_BIT);
    m_pOrigSampleGraph->draw();
 }
+
+void GraphsCanvas::onMouseWheel(const scv::MouseEvent &evt)
+{
+   if(evt.getState() == evt.wheelup)
+   {
+      double new_scale = m_pOrigSampleGraph->getScale()/2;
+      m_pOrigSampleGraph->setScale(new_scale);
+   }
+   else if(evt.getState() == evt.wheeldown)
+   {
+      double new_scale = m_pOrigSampleGraph->getScale() + 0.5;
+      m_pOrigSampleGraph->setScale(new_scale);
+   }
+   m_pOrigSampleGraph->adjustPoints();
+}
