@@ -1,5 +1,6 @@
 #include "GUI/Canvas/GraphsCanvas.h"
 #include "macros.h"
+#include "DCTViewer.h"
 
 #include <iostream>
 
@@ -9,7 +10,7 @@ GraphsCanvas::GraphsCanvas(const scv::Point &p)
    : scv::Canvas(p, WINDOW_WIDTH, WINDOW_HEIGHT - BOTTOM_SIDEBAR_HEIGHT),
      m_bgColor(1.f, 1.f, 1.f)
 {
-   m_pOrigSampleGraph = new Graph(scv::Point(10,450), 300, 360);
+   m_pOrigSampleGraph = NULL;
 }
 
 GraphsCanvas::~GraphsCanvas()
@@ -19,6 +20,8 @@ GraphsCanvas::~GraphsCanvas()
 
 void GraphsCanvas::update()
 {
+   if(m_pOrigSampleGraph == NULL)
+       m_pOrigSampleGraph = new Graph(DCTVIEWER->getSignals(), scv::Point(10,450), 300, 360);
 }
 
 void GraphsCanvas::render()

@@ -11,7 +11,7 @@ namespace GUI
    class Graph
    {
    public:
-      Graph(const scv::Point &p0x0, unsigned int xLenght, unsigned int yLength);
+      Graph(std::vector<std::vector<double> *> *signals, const scv::Point &p0x0, unsigned int xLenght, unsigned int yLength);
       ~Graph();
 
       void addPoints(const std::vector<GraphPoint *> &points);
@@ -29,6 +29,7 @@ namespace GUI
 
    private:
       std::vector<GraphPoint *> *m_vpPoints;
+      std::vector<std::vector<double> *> *m_vvSignals; //sinais que vao ser mostrados no grafico.
       double m_Scale;
 
    private:
