@@ -21,14 +21,10 @@ Graph::~Graph()
 
 void Graph::setScale(const double &scale)
 {
-   m_Scale = scale;
-   m_XLength *= m_Scale;
-   m_YLength *= m_Scale;
+   if(scale < 0.3)
+      return;
 
-   if(m_XLength < 0)
-      m_XLength *= -1;
-   if(m_YLength < 0)
-      m_YLength *= -1;
+   m_Scale = scale;
 }
 
 void Graph::addPoints(const std::vector<GraphPoint *> &points)
@@ -38,32 +34,25 @@ void Graph::addPoints(const std::vector<GraphPoint *> &points)
 
 void Graph::adjustPoint(unsigned int row, unsigned int col)
 {
-   double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
+   unsigned int signalsSize = DCTVIEWER->getSignals()->size()*8;
+   double x_spacement = (double)(m_Scale*m_XLength)/signalsSize;
+   double y_spacement = (double)(m_Scale*m_YLength)/SAMPLE_SPINNER_MAX_VALUE;
    int pos = (row*8) + col;
    GraphPoint *pt = m_vpPoints->at(pos);
    pt->m_Pos.y = -(y_spacement*DCTVIEWER->getSignals()->at(row)->at(col))
       + m_Pos0x0.y;
+   pt->m_Pos.x = (x_spacement*pos) + m_Pos0x0.x;
 }
 
 void Graph::adjustPoints()
 {
-   unsigned int signalsSize = DCTVIEWER->getSignals()->size()*8;
    unsigned int pointsSize = m_vpPoints->size();
-   double x_spacement = (double)m_XLength/signalsSize;
-   unsigned int size = DCTVIEWER->getSignals()->size();
    
-   double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
    for(unsigned int i = 0; i < pointsSize; i++)
    {
-      double x = (x_spacement*i) + m_Pos0x0.x;
-      GraphPoint *pt = m_vpPoints->at(i);
-      pt->m_Pos.x = (x_spacement*i) + m_Pos0x0.x;
-
       int row = i/8;
       int col = i%8;
-      pt->m_Pos.y = -(y_spacement*DCTVIEWER->getSignals()->at(row)->at(col))
-         + m_Pos0x0.y;
-      pt->m_Pos.x = x;
+      adjustPoint(row, col);
    }
 }
 
@@ -73,25 +62,20 @@ void Graph::insertPoints()
    unsigned int pointsSize = m_vpPoints->size();
    if(signalsSize > pointsSize)
    {
-      double x_spacement = (double)m_XLength/signalsSize;
-      double y_spacement = (double)m_YLength/SAMPLE_SPINNER_MAX_VALUE;
       unsigned int size = DCTVIEWER->getSignals()->size();
-
-      adjustPoints();
-      
+            
       std::vector<GraphPoint *> *points = new std::vector<GraphPoint *>();
       for(unsigned int i = size-1; i < size; i++)
       {
          std::vector<double> *v = DCTVIEWER->getSignals()->at(i);
          for(unsigned int j = 0; j < v->size(); j++)
          {
-            double x = (x_spacement*((i*8)+j)) + m_Pos0x0.x; //pega a posicao do sinal na matriz.
-            double y = -(y_spacement*v->at(j)) + m_Pos0x0.y;
-            GraphPoint *pt = new GraphPoint(scv::Point(x, y));
+            GraphPoint *pt = new GraphPoint(scv::Point(0, 0));
             points->push_back(pt);
          }
       }
       addPoints(*points);
+      adjustPoints();
    }
 }
 
@@ -101,26 +85,26 @@ void Graph::drawAxis()
       //draw coordinate x
       glColor4f(0.f, 0.f, 0.f, 1.f);
       glVertex2d(m_Pos0x0.x, m_Pos0x0.y);
-      glVertex2d(m_Pos0x0.x + m_XLength, m_Pos0x0.y);
+      glVertex2d(m_Pos0x0.x + m_Scale*m_XLength, m_Pos0x0.y);
       
       //draw x arrow
-      glVertex2d(m_Pos0x0.x + m_XLength - 10, m_Pos0x0.y - 5);
-      glVertex2d(m_Pos0x0.x + m_XLength, m_Pos0x0.y);
+      glVertex2d(m_Pos0x0.x + m_Scale*m_XLength - 10, m_Pos0x0.y - 5);
+      glVertex2d(m_Pos0x0.x + m_Scale*m_XLength, m_Pos0x0.y);
 
-      glVertex2d(m_Pos0x0.x + m_XLength - 10, m_Pos0x0.y + 5);
-      glVertex2d(m_Pos0x0.x + m_XLength, m_Pos0x0.y);
+      glVertex2d(m_Pos0x0.x + m_Scale*m_XLength - 10, m_Pos0x0.y + 5);
+      glVertex2d(m_Pos0x0.x + m_Scale*m_XLength, m_Pos0x0.y);
 
 
       //draw coordinate y
       glVertex2d(m_Pos0x0.x, m_Pos0x0.y);
-      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_YLength);
+      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_Scale*m_YLength);
 
       //draw y arrow
-      glVertex2d(m_Pos0x0.x - 5, m_Pos0x0.y - m_YLength + 10);
-      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_YLength);
+      glVertex2d(m_Pos0x0.x - 5, m_Pos0x0.y - m_Scale*m_YLength + 10);
+      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_Scale*m_YLength);
       
-      glVertex2d(m_Pos0x0.x + 5, m_Pos0x0.y - m_YLength + 10);
-      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_YLength);
+      glVertex2d(m_Pos0x0.x + 5, m_Pos0x0.y - m_Scale*m_YLength + 10);
+      glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_Scale*m_YLength);
 
 
    glEnd();

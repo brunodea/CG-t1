@@ -50,7 +50,7 @@ void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
 {
    if(evt.getKeyCode() == '+')
    {
-      double new_scale = 1.1;
+      double new_scale = m_pOrigSampleGraph->getScale() + 0.1;
       //if(new_scale < 1.9)
       {
          m_pOrigSampleGraph->setScale(new_scale);
@@ -59,7 +59,7 @@ void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
    }
    else if(evt.getKeyCode() == '-')
    {
-      double new_scale = 0.9;
+      double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
       //if(new_scale > 0.1)
       {
          m_pOrigSampleGraph->setScale(new_scale);
