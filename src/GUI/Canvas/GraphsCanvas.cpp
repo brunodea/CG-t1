@@ -12,6 +12,7 @@ GraphsCanvas::GraphsCanvas(const scv::Point &p)
 {
    m_pOrigSampleGraph = NULL;
    m_pFDCTGraph = NULL;
+   m_pIDCTGraph = NULL;
 }
 
 GraphsCanvas::~GraphsCanvas()
@@ -25,12 +26,20 @@ void GraphsCanvas::update()
    if(m_pOrigSampleGraph == NULL)
        m_pOrigSampleGraph = new Graph(DCTVIEWER->getSignals(), scv::Point(10,450), 300, 360);
    if(m_pFDCTGraph == NULL)
-      m_pFDCTGraph = new Graph(DCTVIEWER->getFDCTSignals(), scv::Point(10,450), 300, 360);
+      m_pFDCTGraph = new Graph(DCTVIEWER->getFDCTSignals(), scv::Point(0,450), 300, 360);
+   if(m_pIDCTGraph == NULL)
+      m_pIDCTGraph = new Graph(DCTVIEWER->getIDCTSignals(), scv::Point(0,450), 300, 360);
+
 
    m_pFDCTGraph->setSignals(DCTVIEWER->getFDCTSignals());
    m_pFDCTGraph->m_Pos0x0.x = m_pOrigSampleGraph->m_Pos0x0.x +
       m_pOrigSampleGraph->getScale()*m_pOrigSampleGraph->m_XLength + 30;
    m_pFDCTGraph->setScale(m_pOrigSampleGraph->getScale());
+
+   m_pIDCTGraph->setSignals(DCTVIEWER->getIDCTSignals());
+   m_pIDCTGraph->m_Pos0x0.x = m_pFDCTGraph->m_Pos0x0.x +
+      m_pFDCTGraph->getScale()*m_pFDCTGraph->m_XLength + 30;
+   m_pIDCTGraph->setScale(m_pOrigSampleGraph->getScale());
 }
 
 void GraphsCanvas::render()
@@ -39,6 +48,7 @@ void GraphsCanvas::render()
    glClear(GL_COLOR_BUFFER_BIT);
    m_pOrigSampleGraph->draw();
    m_pFDCTGraph->draw();
+   m_pIDCTGraph->draw();
 }
 
 void GraphsCanvas::onMouseWheel(const scv::MouseEvent &evt)

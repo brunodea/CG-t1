@@ -17,6 +17,10 @@ namespace brunodea
       inline GUI::GraphsCanvas *getGraphsCanvas() { return m_pGraphsCanvas; }
       inline std::vector<std::vector<double> *> *getSignals() { return m_pSignals; }
       std::vector<std::vector<double> *> *getFDCTSignals();
+      std::vector<std::vector<double> *> *getIDCTSignals();
+
+      void adjustFDCTSignals();
+      void adjustIDCTSignals();
 
       void addSignalVec(std::vector<double> *sv);
       void addSignalVec();
@@ -32,6 +36,7 @@ namespace brunodea
 
       std::vector<std::vector<double> *> *m_pSignals;
       std::vector<std::vector<double> *> *m_pFDCTSignals;
+      std::vector<std::vector<double> *> *m_pIDCTSignals;
 
    private:
       DCTViewer();

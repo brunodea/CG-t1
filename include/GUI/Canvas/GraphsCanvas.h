@@ -21,6 +21,7 @@ namespace GUI
 
       inline Graph *getOrigSampleGraph() { return m_pOrigSampleGraph; }
       inline Graph *getFDCTGraph() { return m_pFDCTGraph; }
+      inline Graph *getIDCTGraph() { return m_pIDCTGraph; }
 
       void render();
       void update();
@@ -32,6 +33,7 @@ namespace GUI
       scv::Color4f m_bgColor;
       Graph *m_pOrigSampleGraph;
       Graph *m_pFDCTGraph;
+      Graph *m_pIDCTGraph;
 
    }; //end of class GraphsCanvas.
 } //end of namespace GUI.

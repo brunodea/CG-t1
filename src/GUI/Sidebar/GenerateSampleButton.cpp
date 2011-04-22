@@ -24,5 +24,10 @@ void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
    case ADD_ROW:
       DCTVIEWER->getBottomSidebar()->addSampleRow();
    }
+   
+   DCTVIEWER->adjustFDCTSignals();
+   DCTVIEWER->adjustIDCTSignals();
+   DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoints();
+   DCTVIEWER->getGraphsCanvas()->getIDCTGraph()->adjustPoints();
 }
 

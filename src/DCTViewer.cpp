@@ -3,6 +3,8 @@
 #include <SCV/Point.h>
 #include <SCV/Kernel.h>
 
+#include <iostream>
+
 using namespace brunodea;
 
 DCTViewer *DCTViewer::m_sInstance = NULL;
@@ -27,9 +29,13 @@ DCTViewer::~DCTViewer()
       delete []m_pSignals->at(i);
    delete []m_pSignals;
    
-   for(unsigned int i = 0; i < m_pSignals->size(); i++)
+   for(unsigned int i = 0; i < m_pFDCTSignals->size(); i++)
       delete []m_pFDCTSignals->at(i);
    delete []m_pFDCTSignals;
+
+   for(unsigned int i = 0; i < m_pIDCTSignals->size(); i++)
+      delete []m_pIDCTSignals->at(i);
+   delete []m_pIDCTSignals;
 }
 
 DCTViewer *DCTViewer::instance()
@@ -44,6 +50,7 @@ void DCTViewer::initSignals()
 {
    m_pSignals = new std::vector<std::vector<double> *>();
    m_pFDCTSignals = new std::vector<std::vector<double> *>();
+   m_pIDCTSignals = new std::vector<std::vector<double> *>();
 }
 
 void DCTViewer::addSignalVec(std::vector<double> *sv)
@@ -70,6 +77,51 @@ std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
    }
 
    return m_pFDCTSignals;
+}
+
+std::vector<std::vector<double> *> *DCTViewer::getIDCTSignals()
+{
+   double sigs_size = m_pSignals->size();
+   double fdct_sigs_size = m_pIDCTSignals->size();
+   if(fdct_sigs_size < sigs_size)
+   {
+      for(int i = fdct_sigs_size; i < sigs_size; i++)
+         m_pIDCTSignals->push_back(&DCTViewer::idct(*m_pFDCTSignals->at(i)));
+   }
+
+   return m_pIDCTSignals;
+}
+
+void DCTViewer::adjustFDCTSignals()
+{
+   unsigned int sigs_size = m_pSignals->size();
+   for(unsigned int i = 0; i < sigs_size; i++)
+   {
+      std::vector<double> *v = &DCTViewer::fdct(*m_pSignals->at(i));
+      for(unsigned int j = 0; j < v->size(); j++)
+      {
+         double *val = &getFDCTSignals()->at(i)->at(j);
+         *val = v->at(j);
+         std::cout << *val << " ";
+      }
+      std::cout << "\n";
+   }
+}
+
+void DCTViewer::adjustIDCTSignals()
+{
+   unsigned int sigs_size = getFDCTSignals()->size();
+   for(unsigned int i = 0; i < sigs_size; i++)
+   {
+      std::vector<double> *v = &DCTViewer::idct(*getFDCTSignals()->at(i));
+      for(unsigned int j = 0; j < v->size(); j++)
+      {
+         double *val = &getIDCTSignals()->at(i)->at(j);
+         *val = v->at(j);
+         std::cout << *val << " ";
+      }
+      std::cout << "\n";
+   }
 }
 
 /*
