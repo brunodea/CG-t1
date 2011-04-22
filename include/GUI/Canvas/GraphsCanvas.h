@@ -30,6 +30,7 @@ namespace GUI
    private:
       scv::Color4f m_bgColor;
       Graph *m_pOrigSampleGraph;
+      Graph *m_pFDCTGraph;
 
    }; //end of class GraphsCanvas.
 } //end of namespace GUI.

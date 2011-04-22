@@ -1,5 +1,5 @@
-#ifndef _BRUNODEA_CG_T1_DCT_VIEWER_H_
-#define _BRUNODEA_CG_T1_DCT_VIEWER_H_
+#ifndef _BRUNODEA_DCTVIEWER_H_
+#define _BRUNODEA_DCTVIEWER_H_
 
 #include <vector>
 #include "GUI/Sidebar/BottomSidebar.h"
@@ -16,6 +16,7 @@ namespace brunodea
       inline GUI::BottomSidebar *getBottomSidebar() { return m_pBottomSidebar; }
       inline GUI::GraphsCanvas *getGraphsCanvas() { return m_pGraphsCanvas; }
       inline std::vector<std::vector<double> *> *getSignals() { return m_pSignals; }
+      std::vector<std::vector<double> *> *getFDCTSignals();
 
       void addSignalVec(std::vector<double> *sv);
       void addSignalVec();
@@ -27,6 +28,7 @@ namespace brunodea
       GUI::GraphsCanvas *m_pGraphsCanvas;
 
       std::vector<std::vector<double> *> *m_pSignals;
+      std::vector<std::vector<double> *> *m_pFDCTSignals;
 
    private:
       DCTViewer();

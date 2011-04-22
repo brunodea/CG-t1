@@ -22,6 +22,11 @@ namespace GUI
       void setScale(const double &scale);
       inline double &getScale() { return m_Scale; }
 
+      inline void setSignals(std::vector<std::vector<double> *> *signals)
+      {
+         m_vvpSignals = signals;
+      }
+
    public:
       scv::Point m_Pos0x0;
       double m_XLength;
@@ -29,7 +34,7 @@ namespace GUI
 
    private:
       std::vector<GraphPoint *> *m_vpPoints;
-      std::vector<std::vector<double> *> *m_vvSignals; //sinais que vao ser mostrados no grafico.
+      std::vector<std::vector<double> *> *m_vvpSignals; //sinais que vao ser mostrados no grafico.
       double m_Scale;
 
    private:

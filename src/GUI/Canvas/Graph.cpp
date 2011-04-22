@@ -8,7 +8,7 @@ using namespace GUI;
 
 Graph::Graph(std::vector<std::vector<double> *> *signals, const scv::Point &p0x0, 
              unsigned int xLength, unsigned int yLength)
-   : m_Pos0x0(p0x0), m_XLength(xLength), m_YLength(yLength), m_vvSignals(signals)
+   : m_Pos0x0(p0x0), m_XLength(xLength), m_YLength(yLength), m_vvpSignals(signals)
 {
    m_vpPoints = new std::vector<GraphPoint *>();
    m_Scale = 1;
@@ -36,12 +36,12 @@ void Graph::addPoints(const std::vector<GraphPoint *> &points)
 
 void Graph::adjustPoint(unsigned int row, unsigned int col)
 {
-   unsigned int signalsSize = m_vvSignals->size()*8;
+   unsigned int signalsSize = m_vvpSignals->size()*8;
    double x_spacement = (double)(m_Scale*m_XLength)/signalsSize;
    double y_spacement = (double)(m_Scale*m_YLength)/SAMPLE_SPINNER_MAX_VALUE;
    int pos = (row*8) + col;
    GraphPoint *pt = m_vpPoints->at(pos);
-   pt->m_Pos.y = -(y_spacement*m_vvSignals->at(row)->at(col))
+   pt->m_Pos.y = -(y_spacement*m_vvpSignals->at(row)->at(col))
       + m_Pos0x0.y;
    pt->m_Pos.x = (x_spacement*pos) + m_Pos0x0.x;
 }
@@ -60,11 +60,11 @@ void Graph::adjustPoints()
 
 void Graph::insertPoints()
 {
-   unsigned int signalsSize = m_vvSignals->size()*8;
+   unsigned int signalsSize = m_vvpSignals->size()*8;
    unsigned int pointsSize = m_vpPoints->size();
    if(signalsSize > pointsSize)
    {
-      unsigned int size = m_vvSignals->size();
+      unsigned int size = m_vvpSignals->size();
             
       std::vector<GraphPoint *> *points = new std::vector<GraphPoint *>();
       for(unsigned int i = size-1; i < size; i++)

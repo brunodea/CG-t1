@@ -11,17 +11,24 @@ GraphsCanvas::GraphsCanvas(const scv::Point &p)
      m_bgColor(1.f, 1.f, 1.f)
 {
    m_pOrigSampleGraph = NULL;
+   m_pFDCTGraph = NULL;
 }
 
 GraphsCanvas::~GraphsCanvas()
 {
    delete m_pOrigSampleGraph;
+   delete m_pFDCTGraph;
 }
 
 void GraphsCanvas::update()
 {
    if(m_pOrigSampleGraph == NULL)
        m_pOrigSampleGraph = new Graph(DCTVIEWER->getSignals(), scv::Point(10,450), 300, 360);
+   if(m_pFDCTGraph == NULL)
+      m_pFDCTGraph = new Graph(DCTVIEWER->getFDCTSignals(), scv::Point(10,450), 300, 360);
+
+   m_pFDCTGraph->setSignals(DCTVIEWER->getFDCTSignals());
+   m_pFDCTGraph->m_Pos0x0.x = m_pOrigSampleGraph->m_Pos0x0.x + m_pOrigSampleGraph->m_XLength + 30;
 }
 
 void GraphsCanvas::render()
@@ -33,20 +40,16 @@ void GraphsCanvas::render()
 
 void GraphsCanvas::onMouseWheel(const scv::MouseEvent &evt)
 {
-   /*
    if(evt.getState() == evt.wheelup)
    {
-      double new_scale = m_pOrigSampleGraph->getScale() - 0.2;
-      if(new_scale > 0.1)
-         m_pOrigSampleGraph->setScale(new_scale);
+      double new_scale = m_pOrigSampleGraph->getScale() + 0.1;
+      m_pOrigSampleGraph->setScale(new_scale);
    }
    else if(evt.getState() == evt.wheeldown)
    {
-      double new_scale = m_pOrigSampleGraph->getScale() + 0.2;
-      if(new_scale < 1.9)
-         m_pOrigSampleGraph->setScale(new_scale);
+      double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
+      m_pOrigSampleGraph->setScale(new_scale);
    }
-   m_pOrigSampleGraph->adjustPoints();*/
 }
 
 void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
@@ -54,19 +57,11 @@ void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
    if(evt.getKeyCode() == '+')
    {
       double new_scale = m_pOrigSampleGraph->getScale() + 0.1;
-      //if(new_scale < 1.9)
-      {
-         m_pOrigSampleGraph->setScale(new_scale);
-         m_pOrigSampleGraph->adjustPoints();
-      }
+      m_pOrigSampleGraph->setScale(new_scale);
    }
    else if(evt.getKeyCode() == '-')
    {
       double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
-      //if(new_scale > 0.1)
-      {
-         m_pOrigSampleGraph->setScale(new_scale);
-         m_pOrigSampleGraph->adjustPoints();
-      }
+      m_pOrigSampleGraph->setScale(new_scale);
    }
 }

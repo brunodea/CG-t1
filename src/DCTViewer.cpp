@@ -1,4 +1,5 @@
 #include "DCTViewer.h"
+#include "DCT/dct.hpp"
 
 #include <SCV/Point.h>
 #include <SCV/Kernel.h>
@@ -26,6 +27,10 @@ DCTViewer::~DCTViewer()
    for(unsigned int i = 0; i < m_pSignals->size(); i++)
       delete []m_pSignals->at(i);
    delete []m_pSignals;
+   
+   for(unsigned int i = 0; i < m_pSignals->size(); i++)
+      delete []m_pFDCTSignals->at(i);
+   delete []m_pFDCTSignals;
 }
 
 DCTViewer *DCTViewer::instance()
@@ -39,6 +44,7 @@ DCTViewer *DCTViewer::instance()
 void DCTViewer::initSignals()
 {
    m_pSignals = new std::vector<std::vector<double> *>();
+   m_pFDCTSignals = new std::vector<std::vector<double> *>();
 }
 
 void DCTViewer::addSignalVec(std::vector<double> *sv)
@@ -52,4 +58,17 @@ void DCTViewer::addSignalVec()
    for(unsigned int i = 0; i < 8; i++)
       v->push_back(0);
    addSignalVec(v);
+}
+
+std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
+{
+   double sigs_size = m_pSignals->size();
+   double fdct_sigs_size = m_pFDCTSignals->size();
+   if(fdct_sigs_size < sigs_size)
+   {
+      for(int i = fdct_sigs_size; i < sigs_size; i++)
+         m_pFDCTSignals->push_back(&DCT::fdct(*m_pSignals->at(i)));
+   }
+
+   return m_pFDCTSignals;
 }
