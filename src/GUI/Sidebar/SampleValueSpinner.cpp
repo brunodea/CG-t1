@@ -34,9 +34,8 @@ void SampleValueSpinner::onValueChange()
    DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoint(row, col);
    DCTVIEWER->getGraphsCanvas()->getIDCTGraph()->adjustPoint(row, col);
 
-   //mudancas feitas pelo usuario em um spinner.
-   if(this->isFocused())
-   {      
+   if(isFocused())
+   {
       DCTVIEWER->adjustFDCTSignals();
       DCTVIEWER->adjustIDCTSignals();
       DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoints();

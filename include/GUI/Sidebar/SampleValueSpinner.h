@@ -3,6 +3,7 @@
 
 #include <SCV/Spinner.h>
 #include <SCV/Point.h>
+#include <SCV/KeyEvent.h>
 #include "macros.h"
 
 namespace GUI
