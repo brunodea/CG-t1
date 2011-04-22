@@ -16,7 +16,7 @@
 
 void dct_test()
 {
-   DCT::SignalVec s;
+   std::vector<double> s;
    s.push_back(8);
    s.push_back(16);
    s.push_back(24);
@@ -29,13 +29,13 @@ void dct_test()
    for(unsigned int i = 0; i < s.size(); i++)
       std::cout << s.at(i) << " ";
    std::cout << std::endl;
-   DCT::SignalVec res = DCT::fdct(s);
+   std::vector<double> res = DCT::fdct(s);
 
    for(unsigned int i = 0; i < res.size(); i++)
       std::cout << res[i] << " ";
    std::cout << std::endl;
 
-   DCT::SignalVec res_i = DCT::idct(res);
+   std::vector<double> res_i = DCT::idct(res);
 
    for(unsigned int i = 0; i < res_i.size(); i++)
       std::cout << res_i[i] << " ";

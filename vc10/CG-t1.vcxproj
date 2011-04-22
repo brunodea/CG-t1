@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\DCTViewer.cpp" />
+    <ClCompile Include="..\src\GUI\Canvas\Graph.cpp" />
     <ClCompile Include="..\src\GUI\Canvas\GraphsCanvas.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\BottomSidebar.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\GenerateSampleButton.cpp" />
@@ -22,6 +23,8 @@
   <ItemGroup>
     <ClInclude Include="..\include\DCTViewer.h" />
     <ClInclude Include="..\include\DCT\dct.hpp" />
+    <ClInclude Include="..\include\GUI\Canvas\Graph.h" />
+    <ClInclude Include="..\include\GUI\Canvas\GraphPoint.hpp" />
     <ClInclude Include="..\include\GUI\Canvas\GraphsCanvas.h" />
     <ClInclude Include="..\include\GUI\Sidebar\BottomSidebar.h" />
     <ClInclude Include="..\include\GUI\Sidebar\GenerateSampleButton.h" />

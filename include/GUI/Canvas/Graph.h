@@ -15,7 +15,9 @@ namespace GUI
       ~Graph();
 
       void addPoints(const std::vector<GraphPoint *> &points);
+      void adjustPoint(unsigned int row, unsigned int col);
       void draw();
+
    public:
       scv::Point m_Pos0x0;
       unsigned int m_XLength;
@@ -26,7 +28,12 @@ namespace GUI
 
 
    private:
-      void drawCoordinates();
+      void drawAxis();
+      void drawPoints();
+      
+      void adjustPoints();
+      void insertPoints();
+      void cleanPoints();
 
    }; //end of class Graph.
 

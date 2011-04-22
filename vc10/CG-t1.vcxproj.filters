@@ -57,6 +57,9 @@
     <ClCompile Include="..\src\DCTViewer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Canvas\Graph.cpp">
+      <Filter>Source Files\GUI\Canvas</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
@@ -82,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="..\include\DCTViewer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\GraphPoint.hpp">
+      <Filter>Header Files\gui\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\Graph.h">
+      <Filter>Header Files\gui\Canvas</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

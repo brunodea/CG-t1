@@ -1,4 +1,6 @@
 #include "GUI/Sidebar/SampleValueSpinner.h"
+#include "DCTViewer.h"
+#include "macros.h"
 
 #include <SCV/Point.h>
 #include <iostream>
@@ -21,4 +23,12 @@ SampleValueSpinner::SampleValueSpinner(const scv::Point &p)
 
 void SampleValueSpinner::onValueChange()
 {
+   int row = m_iVecPos / 8;
+   int col = m_iVecPos % 8;
+
+   std::vector<double> *v = DCTVIEWER->getSignals()->at(row);
+   double *orig = &v->at(col);
+   *orig = this->getValue();
+
+   DCTVIEWER->getGraphsCanvas()->getOrigSampleGraph()->adjustPoint(row, col);
 }

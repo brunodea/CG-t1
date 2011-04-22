@@ -10,7 +10,7 @@ DCTViewer *DCTViewer::m_sInstance = NULL;
 DCTViewer::DCTViewer()
 {
    initSignals();
-
+   
    m_pBottomSidebar = new GUI::BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 5));
    m_pGraphsCanvas = new GUI::GraphsCanvas(scv::Point(0, 0));
 
@@ -39,7 +39,6 @@ DCTViewer *DCTViewer::instance()
 void DCTViewer::initSignals()
 {
    m_pSignals = new std::vector<std::vector<double> *>();
-
 }
 
 void DCTViewer::addSignalVec(std::vector<double> *sv)

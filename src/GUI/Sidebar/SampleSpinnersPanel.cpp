@@ -1,4 +1,6 @@
 #include "GUI/Sidebar/SampleSpinnersPanel.h"
+#include "macros.h"
+#include "DCTViewer.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -6,12 +8,12 @@
 #include <sstream>
 
 #include <SCV/Label.h>
+
 using namespace GUI;
 
 SampleSpinnersPanel::SampleSpinnersPanel(const scv::Point &p, unsigned int width, unsigned int height)
    : scv::Panel(p, width, height)
 {
-   addRow(); //inicia com 8 spinners.
    this->setVisible(true);
 }
 
@@ -39,6 +41,8 @@ void SampleSpinnersPanel::addRow()
       std::cout << "Limit number of rows of spinners reached." << std::endl;
       return;
    }
+
+   DCTVIEWER->addSignalVec(); //deixa o signalvec sempre atualizado qnt ao numero de signals.
 
 	int y = spinnersSize*23;
    int x = 5;
@@ -69,8 +73,15 @@ void SampleSpinnersPanel::generateRandomSample()
    for(unsigned int i = 0; i < m_vvSpinners.size(); i++)
    {
       std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
+      std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
       for(unsigned int j = 0; j < v->size(); j++)
-         v->at(j)->setValue(rand() % 256);
+      {
+         double value = rand() % 256;
+         v->at(j)->setValue(value);
+         
+         double *orig = &signalVec->at(j);
+         *orig = value;
+      }
    }
 }
 
@@ -82,7 +93,14 @@ void SampleSpinnersPanel::generateLinearSample()
    for(unsigned int i = 0; i < m_vvSpinners.size(); i++)
    {
       std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
+      std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
       for(unsigned int j = 0; j < v->size(); j++)
-         v->at(j)->setValue(first*(((i + 1)*8) + j)*0.1);
+      {
+         double value = first*(((i + 1)*8) + j)*0.1;
+         v->at(j)->setValue(value);
+
+         double *orig = &signalVec->at(j);
+         *orig = value;
+      }
    }
 }
