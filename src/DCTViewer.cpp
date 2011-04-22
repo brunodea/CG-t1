@@ -193,7 +193,7 @@ std::vector<double> &DCTViewer::idct(std::vector<double> &signal)
 void DCTViewer::adjustCanvasPanel()
 {
    GUI::Graph *idctGraph = getGraphsCanvas()->getIDCTGraph();
-   double width = idctGraph->m_Pos0x0.x + (idctGraph->getScale()*idctGraph->m_XLength) + 100;
+   double width = idctGraph->m_Pos0x0.x + (idctGraph->getScale()*idctGraph->m_XLength) + idctGraph->m_XLength;
 
    if(width < WINDOW_WIDTH)
       return;
