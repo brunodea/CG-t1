@@ -24,11 +24,11 @@ GraphsCanvas::~GraphsCanvas()
 void GraphsCanvas::update()
 {
    if(m_pOrigSampleGraph == NULL)
-       m_pOrigSampleGraph = new Graph(DCTVIEWER->getSignals(), scv::Point(10,450), 300, 360);
+       m_pOrigSampleGraph = new Graph(DCTVIEWER->getSignals(), "Original", scv::Point(10,450), 300, 360);
    if(m_pFDCTGraph == NULL)
-      m_pFDCTGraph = new Graph(DCTVIEWER->getFDCTSignals(), scv::Point(0,450), 300, 360);
+      m_pFDCTGraph = new Graph(DCTVIEWER->getFDCTSignals(), "Depois da FDCT", scv::Point(0,450), 300, 360);
    if(m_pIDCTGraph == NULL)
-      m_pIDCTGraph = new Graph(DCTVIEWER->getIDCTSignals(), scv::Point(0,450), 300, 360);
+      m_pIDCTGraph = new Graph(DCTVIEWER->getIDCTSignals(), "IDCT apos a FDCT", scv::Point(0,450), 300, 360);
 
 
    m_pFDCTGraph->setSignals(DCTVIEWER->getFDCTSignals());

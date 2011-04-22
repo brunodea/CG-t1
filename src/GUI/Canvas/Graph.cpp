@@ -6,9 +6,9 @@
 
 using namespace GUI;
 
-Graph::Graph(std::vector<std::vector<double> *> *signals, const scv::Point &p0x0, 
+Graph::Graph(std::vector<std::vector<double> *> *signals, const std::string &name, const scv::Point &p0x0, 
              unsigned int xLength, unsigned int yLength)
-   : m_Pos0x0(p0x0), m_XLength(xLength), m_YLength(yLength), m_vvpSignals(signals)
+   : m_Pos0x0(p0x0), m_XLength(xLength), m_YLength(yLength), m_vvpSignals(signals), m_Name(name)
 {
    m_vpPoints = new std::vector<GraphPoint *>();
    m_Scale = 1;
@@ -108,8 +108,15 @@ void Graph::drawAxis()
       glVertex2d(m_Pos0x0.x + 5, m_Pos0x0.y - m_Scale*m_YLength + 10);
       glVertex2d(m_Pos0x0.x, m_Pos0x0.y - m_Scale*m_YLength);
 
-
    glEnd();
+   
+   //draw the name of the graph.    
+   for(unsigned int i = 0; i < m_Name.length(); i++)
+   {
+      glRasterPos2i(m_Pos0x0.x + (i*10), m_Pos0x0.y + 15);
+      glutBitmapCharacter(GLUT_BITMAP_8_BY_13, m_Name.c_str()[i]);
+   }
+
 }
 
 void Graph::drawPoints()
