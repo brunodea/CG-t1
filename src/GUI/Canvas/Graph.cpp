@@ -21,17 +21,13 @@ Graph::~Graph()
 void Graph::addPoints(const std::vector<GraphPoint *> &points)
 {
    m_vpPoints->insert(m_vpPoints->end(), points.begin(), points.end());
-   /*
-   for(unsigned int i = 0; i < points.size(); i++)
-      m_vpPoints->push_back(points.at(i));
-   */
 }
 
 void Graph::adjustPoint(unsigned int row, unsigned int col)
 {
    int pos = (row*8) + col;
    GraphPoint *pt = m_vpPoints->at(pos);
-   pt->m_Pos.y = DCTVIEWER->getSignals()->at(row)->at(col);
+   pt->m_Pos.y = -DCTVIEWER->getSignals()->at(row)->at(col) + m_Pos0x0.y;
 }
 
 void Graph::adjustPoints()
@@ -48,8 +44,7 @@ void Graph::adjustPoints()
 
       int row = i/8;
       int col = i%8;
-
-      pt->m_Pos.y = DCTVIEWER->getSignals()->at(row)->at(col);
+      pt->m_Pos.y = -DCTVIEWER->getSignals()->at(row)->at(col) + m_Pos0x0.y;
    }
 }
 
@@ -59,7 +54,7 @@ void Graph::insertPoints()
    unsigned int pointsSize = m_vpPoints->size();
    if(signalsSize > pointsSize)
    {
-      int x_spacement = m_XLength/(signalsSize+1);
+      int x_spacement = m_XLength/signalsSize;
       unsigned int size = DCTVIEWER->getSignals()->size();
 
       adjustPoints();
@@ -74,10 +69,7 @@ void Graph::insertPoints()
             int y = -v->at(j) + m_Pos0x0.y;
             GraphPoint *pt = new GraphPoint(scv::Point(x, y));
             points->push_back(pt);
-
-            std::cout << x << " ";
          }
-         std::cout << '\n';
       }
       addPoints(*points);
    }

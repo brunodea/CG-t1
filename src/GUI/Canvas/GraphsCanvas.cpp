@@ -5,9 +5,9 @@ using namespace GUI;
 
 GraphsCanvas::GraphsCanvas(const scv::Point &p)
    : scv::Canvas(p, WINDOW_WIDTH, WINDOW_HEIGHT - BOTTOM_SIDEBAR_HEIGHT),
-     m_bgColor(0.f, 0.f, 1.f)
+     m_bgColor(1.f, 1.f, 1.f)
 {
-   m_pOrigSampleGraph = new Graph(scv::Point(10,450), 500, 360);
+   m_pOrigSampleGraph = new Graph(scv::Point(10,450), 300, 360);
 }
 
 GraphsCanvas::~GraphsCanvas()

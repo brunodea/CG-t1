@@ -3,7 +3,7 @@
 
 #define MY_PI 3.14159265
 
-#define WINDOW_WIDTH 800
+#define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 600
 
 #define SAMPLE_SPINNER_MAX_VALUE 255
@@ -14,7 +14,7 @@
 
 #define DCTVIEWER brunodea::DCTViewer::instance()
 
-#define GRAPH_POINT_WIDTH 3
+#define GRAPH_POINT_WIDTH 5
 #define GRAPH_POINT_HEIGHT GRAPH_POINT_WIDTH
 
 #endif

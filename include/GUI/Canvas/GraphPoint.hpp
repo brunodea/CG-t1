@@ -16,7 +16,7 @@ namespace GUI
    {
    public:
       GraphPoint(const scv::Point &p)
-         : m_Pos(p), m_Color(0.f, 1.f, 0.f), m_iHalfWidth(GRAPH_POINT_WIDTH/2), 
+         : m_Pos(p), m_Color(0.f, 0.5f, 0.f), m_iHalfWidth(GRAPH_POINT_WIDTH/2), 
            m_iHalfHeight(GRAPH_POINT_HEIGHT/2)           
       {}
 
