@@ -30,15 +30,19 @@ void GraphsCanvas::update()
    if(m_pIDCTGraph == NULL)
       m_pIDCTGraph = new Graph(DCTVIEWER->getIDCTSignals(), "IDCT apos a FDCT", scv::Point(0,450), 300, 360);
 
+   double height = getHeight() - 30;
+   m_pOrigSampleGraph->m_Pos0x0.y = height;
+   m_pFDCTGraph->m_Pos0x0.y = height;
+   m_pIDCTGraph->m_Pos0x0.y = height;
 
    m_pFDCTGraph->setSignals(DCTVIEWER->getFDCTSignals());
    m_pFDCTGraph->m_Pos0x0.x = m_pOrigSampleGraph->m_Pos0x0.x +
-      m_pOrigSampleGraph->getScale()*m_pOrigSampleGraph->m_XLength + 30;
+      m_pOrigSampleGraph->getScale()*m_pOrigSampleGraph->m_XLength + 60;
    m_pFDCTGraph->setScale(m_pOrigSampleGraph->getScale());
 
    m_pIDCTGraph->setSignals(DCTVIEWER->getIDCTSignals());
    m_pIDCTGraph->m_Pos0x0.x = m_pFDCTGraph->m_Pos0x0.x +
-      m_pFDCTGraph->getScale()*m_pFDCTGraph->m_XLength + 30;
+      m_pFDCTGraph->getScale()*m_pFDCTGraph->m_XLength + 60;
    m_pIDCTGraph->setScale(m_pOrigSampleGraph->getScale());
 }
 

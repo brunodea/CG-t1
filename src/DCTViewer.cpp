@@ -194,11 +194,20 @@ void DCTViewer::adjustCanvasPanel()
 {
    GUI::Graph *idctGraph = getGraphsCanvas()->getIDCTGraph();
    double width = idctGraph->m_Pos0x0.x + (idctGraph->getScale()*idctGraph->m_XLength) + idctGraph->m_XLength;
+   //double height = (idctGraph->getScale()*idctGraph->m_YLength)*1.5;
 
-   if(width < WINDOW_WIDTH)
-      return;
-   
-   m_pGraphsCanvas->setWidth(width);
-   m_pCanvasPanel->setWidth(width);
+
+   if(width >= WINDOW_WIDTH)
+   {
+      m_pGraphsCanvas->setWidth(width);
+      m_pCanvasPanel->setWidth(width);
+   }
+   /*
+   if(height >= WINDOW_HEIGHT)
+   {
+      m_pGraphsCanvas->setHeight(height);
+      m_pCanvasPanel->setHeight(height);
+   }*/
+
    m_pCanvasScrollPane->registerPanel(m_pCanvasPanel);
 }
