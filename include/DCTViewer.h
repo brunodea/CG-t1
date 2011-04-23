@@ -46,9 +46,11 @@ namespace brunodea
       scv::ScrollPane *m_pCanvasScrollPane;
       scv::Panel *m_pCanvasPanel;
 
+      /*DEVE ser SEMPRE um numero multiplo de 8.*/
+      int m_iSampleSize; //size of the sample that will be passed to the fdct/idct (1 or 2 times 8).
+
    private:
       DCTViewer();
-
       void initSignals();
 
    }; //end of class DCTViewer.

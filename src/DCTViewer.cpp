@@ -12,6 +12,7 @@ DCTViewer *DCTViewer::m_sInstance = NULL;
 
 DCTViewer::DCTViewer()
 {
+   m_iSampleSize = 1;
    initSignals();
    
    m_pBottomSidebar = new GUI::BottomSidebar(0,  WINDOW_HEIGHT - (WINDOW_HEIGHT / 5));
@@ -82,8 +83,14 @@ std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
    double fdct_sigs_size = m_pFDCTSignals->size();
    if(fdct_sigs_size < sigs_size)
    {
+      std::vector<double> aux;
       for(int i = fdct_sigs_size; i < sigs_size; i++)
-         m_pFDCTSignals->push_back(&DCTViewer::fdct(*m_pSignals->at(i)));
+      {
+         for(int j = 0; j < m_iSampleSize; j++, i++)
+            aux.insert(aux.end(), m_pSignals->at(i)->begin(), m_pSignals->at(i)->end());
+
+         m_pFDCTSignals->push_back(&DCTViewer::fdct(aux));
+      }
    }
 
    return m_pFDCTSignals;
