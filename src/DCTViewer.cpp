@@ -86,7 +86,7 @@ std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
       std::vector<double> aux;
       for(int i = fdct_sigs_size; i < sigs_size; i++)
       {
-         for(int j = 0; j < m_iSampleSize; j++, i++)
+         for(int j = 0; j < m_iSampleSize && i < sigs_size; j++, i++)
             aux.insert(aux.end(), m_pSignals->at(i)->begin(), m_pSignals->at(i)->end());
 
          m_pFDCTSignals->push_back(&DCTViewer::fdct(aux));
@@ -98,12 +98,18 @@ std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
 
 std::vector<std::vector<double> *> *DCTViewer::getIDCTSignals()
 {
-   double sigs_size = m_pSignals->size();
-   double fdct_sigs_size = m_pIDCTSignals->size();
-   if(fdct_sigs_size < sigs_size)
+   double fdct_sigs_size = m_pFDCTSignals->size();
+   double idct_sigs_size = m_pIDCTSignals->size();
+   if(idct_sigs_size < fdct_sigs_size)
    {
-      for(int i = fdct_sigs_size; i < sigs_size; i++)
-         m_pIDCTSignals->push_back(&DCTViewer::idct(*m_pFDCTSignals->at(i)));
+      std::vector<double> aux;
+      for(int i = idct_sigs_size; i < fdct_sigs_size; i++)
+      {
+         for(int j = 0; j < m_iSampleSize && i < fdct_sigs_size; j++, i++)
+            aux.insert(aux.end(), m_pFDCTSignals->at(i)->begin(), m_pFDCTSignals->at(i)->end());
+
+         m_pIDCTSignals->push_back(&DCTViewer::idct(aux));
+      }
    }
 
    return m_pIDCTSignals;

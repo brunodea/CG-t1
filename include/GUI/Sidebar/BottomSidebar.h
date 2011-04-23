@@ -9,10 +9,9 @@
 #include <SCV/Label.h>
 #include <SCV/Separator.h>
 #include <SCV/ScrollPane.h>
-#include <SCV/ButtonGroup.h>
 #include <vector>
 
-#include "GUI/Sidebar/NumSamplesRadioButton.h"
+#include "GUI/Sidebar/NumSampleSpinner.h"
 #include "GUI/Sidebar/SampleValueSpinner.h"
 #include "GUI/Sidebar/GenerateSampleButton.h"
 #include "GUI/Sidebar/SampleSpinnersPanel.h"
@@ -39,11 +38,10 @@ namespace GUI
       scv::Label *m_pSampleLabel;
       scv::ScrollPane *m_pSampleScrollPanel;
 
-      scv::ButtonGroup *m_pSampleRadioButtonGroup;
-      std::vector<NumSamplesRadioButton *> m_vpNSRadioButtons;
+      NumSampleSpinner *m_pNumSampleSpinner;
 
    private:
-      void initSampleRadioButtons();
+      void initNumSampleSpinner();
       void initGenerateSampleButtons();
       void initSpinnersPanel();
       void initGUIMembers();

@@ -16,7 +16,7 @@
     <ClCompile Include="..\src\GUI\Canvas\GraphsCanvas.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\BottomSidebar.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\GenerateSampleButton.cpp" />
-    <ClCompile Include="..\src\GUI\Sidebar\NumSamplesRadioButton.cpp" />
+    <ClCompile Include="..\src\GUI\Sidebar\NumSampleSpinner.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\SampleSpinnersPanel.cpp" />
     <ClCompile Include="..\src\GUI\Sidebar\SampleValueSpinner.cpp" />
     <ClCompile Include="..\src\main.cpp" />
@@ -29,7 +29,7 @@
     <ClInclude Include="..\include\GUI\Canvas\GraphsCanvas.h" />
     <ClInclude Include="..\include\GUI\Sidebar\BottomSidebar.h" />
     <ClInclude Include="..\include\GUI\Sidebar\GenerateSampleButton.h" />
-    <ClInclude Include="..\include\GUI\Sidebar\NumSamplesRadioButton.h" />
+    <ClInclude Include="..\include\GUI\Sidebar\NumSampleSpinner.h" />
     <ClInclude Include="..\include\GUI\Sidebar\SampleSpinnersPanel.h" />
     <ClInclude Include="..\include\GUI\Sidebar\SampleValueSpinner.h" />
     <ClInclude Include="..\include\macros.h" />
