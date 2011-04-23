@@ -86,5 +86,8 @@
     <ClInclude Include="..\include\GUI\Canvas\Graph.h">
       <Filter>Header Files\gui\Canvas</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\GUI\Canvas\functions.hpp">
+      <Filter>Header Files\gui\Canvas</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

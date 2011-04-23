@@ -14,7 +14,7 @@
 
 #define DCTVIEWER brunodea::DCTViewer::instance()
 
-#define GRAPH_POINT_WIDTH 10
+#define GRAPH_POINT_WIDTH 6
 #define GRAPH_POINT_HEIGHT GRAPH_POINT_WIDTH
 
 #endif

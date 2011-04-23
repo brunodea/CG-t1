@@ -1,6 +1,7 @@
 #include "GUI/Canvas/Graph.h"
 #include "DCTViewer.h"
 #include "macros.h"
+#include "GUI/Canvas/functions.hpp"
 
 #include <iostream>
 
@@ -110,13 +111,7 @@ void Graph::drawAxis()
 
    glEnd();
    
-   //draw the name of the graph.    
-   for(unsigned int i = 0; i < m_Name.length(); i++)
-   {
-      glRasterPos2i(m_Pos0x0.x + (i*10), m_Pos0x0.y + 15);
-      glutBitmapCharacter(GLUT_BITMAP_8_BY_13, m_Name.c_str()[i]);
-   }
-
+   drawText(m_Name, m_Pos0x0);
 }
 
 void Graph::drawPoints()

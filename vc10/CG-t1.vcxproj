@@ -22,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\DCTViewer.h" />
+    <ClInclude Include="..\include\GUI\Canvas\functions.hpp" />
     <ClInclude Include="..\include\GUI\Canvas\Graph.h" />
     <ClInclude Include="..\include\GUI\Canvas\GraphPoint.hpp" />
     <ClInclude Include="..\include\GUI\Canvas\GraphsCanvas.h" />

@@ -2,7 +2,9 @@
 #include "GUI/Canvas/GraphPoint.hpp"
 #include "macros.h"
 #include "DCTViewer.h"
+#include "GUI/Canvas/functions.hpp"
 
+#include <sstream>
 #include <iostream>
 
 using namespace GUI;
@@ -14,12 +16,15 @@ GraphsCanvas::GraphsCanvas(const scv::Point &p)
    m_pOrigSampleGraph = NULL;
    m_pFDCTGraph = NULL;
    m_pIDCTGraph = NULL;
+   m_pCurrPointOvered = NULL;
+   m_iCurrPointIndex = -1;
 }
 
 GraphsCanvas::~GraphsCanvas()
 {
    delete m_pOrigSampleGraph;
    delete m_pFDCTGraph;
+   delete m_pIDCTGraph;
 }
 
 void GraphsCanvas::update()
@@ -54,6 +59,20 @@ void GraphsCanvas::render()
    m_pOrigSampleGraph->draw();
    m_pFDCTGraph->draw();
    m_pIDCTGraph->draw();
+
+
+   if(m_pCurrPointOvered != NULL && m_iCurrPointIndex >= 0)
+   {
+      glColor4f(0.f, 0.f, 6.f, 1.f);
+      std::stringstream ss;
+      ss << m_iCurrPointIndex;
+
+      scv::Point pos;
+      pos.x = m_pCurrPointOvered->m_Pos.x;
+      pos.y = m_pCurrPointOvered->m_Pos.y - 20;
+
+      drawText(ss.str(), pos);
+   }
 }
 
 void GraphsCanvas::onMouseWheel(const scv::MouseEvent &evt)
@@ -125,4 +144,30 @@ void GraphsCanvas::onMouseClick(const scv::MouseEvent &evt)
          return;
       }*/
    }
+}
+
+void GraphsCanvas::onMouseOver(const scv::MouseEvent &evt)
+{
+   int index = -1;
+   GraphPoint *aux = NULL;
+   scv::Point pos;
+
+   index = m_pOrigSampleGraph->getPointAt(evt.getPosition());
+   if(index >= 0)
+      aux = m_pOrigSampleGraph->getPointAt(index);
+   else
+   {
+      index = m_pFDCTGraph->getPointAt(evt.getPosition());
+      if(index >= 0)
+         aux = m_pFDCTGraph->getPointAt(index);
+      else
+      {
+         index = m_pIDCTGraph->getPointAt(evt.getPosition());
+         if(index >= 0)
+            aux = m_pIDCTGraph->getPointAt(index);
+      }
+   }
+
+   m_pCurrPointOvered = aux;
+   m_iCurrPointIndex = index;
 }

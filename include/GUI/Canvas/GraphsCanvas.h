@@ -29,12 +29,16 @@ namespace GUI
       void onMouseClick(const scv::MouseEvent &evt);
       void onMouseWheel(const scv::MouseEvent &evt);
       void onKeyPressed(const scv::KeyEvent &evt);
+      void onMouseOver(const scv::MouseEvent &evt);
 
    private:
       scv::Color4f m_bgColor;
       Graph *m_pOrigSampleGraph;
       Graph *m_pFDCTGraph;
       Graph *m_pIDCTGraph;
+
+      GraphPoint *m_pCurrPointOvered; //current point that is overed by the mouse;
+      unsigned int m_iCurrPointIndex; //index of the current point overed by the mouse;
 
    }; //end of class GraphsCanvas.
 } //end of namespace GUI.
