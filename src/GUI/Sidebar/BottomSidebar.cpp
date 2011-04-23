@@ -23,6 +23,10 @@ BottomSidebar::~BottomSidebar()
       delete m_vGenerateSampleButtons[i];
    delete m_pSpinnersPanel;
    delete m_pSampleScrollPanel;
+
+   for(unsigned int i = 0; i < m_vpNSRadioButtons.size(); i++)
+      delete m_vpNSRadioButtons[i];
+  delete m_pSampleRadioButtonGroup;
 }
 
 void BottomSidebar::initGenerateSampleButtons()
@@ -63,6 +67,7 @@ void BottomSidebar::initGUIMembers()
 
    initSpinnersPanel();
    initGenerateSampleButtons();
+   initSampleRadioButtons();
 }
 
 void BottomSidebar::generateRandomSample()
@@ -80,4 +85,22 @@ void BottomSidebar::addSampleRow()
    m_pSpinnersPanel->addRow();   
    m_pSampleScrollPanel->registerPanel(m_pSpinnersPanel);
    m_pSampleScrollPanel->setHeight(120);
+}
+
+void BottomSidebar::initSampleRadioButtons()
+{
+   m_pSampleRadioButtonGroup = new scv::ButtonGroup();
+
+   scv::Point p(10, 30);
+   NumSamplesRadioButton *t8_radio_button = new NumSamplesRadioButton(p, NumSamplesRadioButton::TYPE_8);
+   t8_radio_button->setState(true);
+
+   p.y += t8_radio_button->getHeight() + 5;
+   NumSamplesRadioButton *t16_radio_button = new NumSamplesRadioButton(p, NumSamplesRadioButton::TYPE_16);
+
+   t8_radio_button->registerButtonGroup(m_pSampleRadioButtonGroup);
+   t16_radio_button->registerButtonGroup(m_pSampleRadioButtonGroup);
+
+   this->addComponent(t8_radio_button);
+   this->addComponent(t16_radio_button);
 }

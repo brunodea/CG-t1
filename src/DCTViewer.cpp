@@ -112,9 +112,7 @@ void DCTViewer::adjustFDCTSignals()
       {
          double *val = &getFDCTSignals()->at(i)->at(j);
          *val = v->at(j);
-         std::cout << *val << " ";
       }
-      std::cout << "\n";
    }
 }
 
@@ -128,9 +126,7 @@ void DCTViewer::adjustIDCTSignals()
       {
          double *val = &getIDCTSignals()->at(i)->at(j);
          *val = v->at(j);
-         std::cout << *val << " ";
       }
-      std::cout << "\n";
    }
 }
 

@@ -57,6 +57,9 @@
     <ClCompile Include="..\src\GUI\Canvas\Graph.cpp">
       <Filter>Source Files\GUI\Canvas</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\GUI\Sidebar\NumSamplesRadioButton.cpp">
+      <Filter>Source Files\GUI\Sidebar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\macros.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="..\include\GUI\Canvas\functions.hpp">
       <Filter>Header Files\gui\Canvas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GUI\Sidebar\NumSamplesRadioButton.h">
+      <Filter>Header Files\gui\Sidebar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
