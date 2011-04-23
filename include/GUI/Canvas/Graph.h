@@ -23,7 +23,8 @@ namespace GUI
 
       void goToZero(GraphPoint *gp);
 
-      GraphPoint *getPointAt(const scv::Point &pt);
+      GraphPoint *getPointAt(unsigned int index);
+      int getPointAt(const scv::Point &pt); //return the index of the point.
 
       void setScale(const double &scale);
       inline double &getScale() { return m_Scale; }

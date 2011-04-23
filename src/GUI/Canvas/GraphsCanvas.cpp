@@ -92,7 +92,7 @@ void GraphsCanvas::onMouseClick(const scv::MouseEvent &evt)
 {
    if(evt.getButton() == evt.middle)
    {
-      GraphPoint *aux = NULL;
+      int index = -1;
       /*
       aux = m_pOrigSampleGraph->getPointAt(evt.getPosition());
       if(aux != NULL)
@@ -101,10 +101,20 @@ void GraphsCanvas::onMouseClick(const scv::MouseEvent &evt)
          m_pOrigSampleGraph->goToZero(aux);
          return;
       }*/
-      aux = m_pFDCTGraph->getPointAt(evt.getPosition());
-      if(aux != NULL)
+      index = m_pFDCTGraph->getPointAt(evt.getPosition());
+      if(index >= 0)
       {
+         GraphPoint *aux = m_pFDCTGraph->getPointAt(index);
          m_pFDCTGraph->goToZero(aux);
+         
+         int row = index/8;
+         int col = index%8;
+
+         double *val = &DCTVIEWER->getFDCTSignals()->at(row)->at(col);
+         *val = 0;
+
+         DCTVIEWER->adjustIDCTSignals();
+         DCTVIEWER->getGraphsCanvas()->getIDCTGraph()->adjustPoints();
          return;
       }
       /*

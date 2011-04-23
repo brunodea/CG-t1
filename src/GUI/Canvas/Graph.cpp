@@ -160,20 +160,27 @@ void Graph::cleanPoints()
       delete m_vpPoints->at(i);
 }
 
-GraphPoint *Graph::getPointAt(const scv::Point &pt)
+int Graph::getPointAt(const scv::Point &pt)
 {
-   GraphPoint *gp = NULL;
+   int index = -1;
    for(unsigned int i = 0; i < m_vpPoints->size(); i++)
    {
       GraphPoint *aux = m_vpPoints->at(i);
       if(aux->isInside(pt))
       {
-         gp = aux;
+         index = i;
          break;
       }
    }
+   return index;
+}
 
-   return gp;
+GraphPoint *Graph::getPointAt(unsigned int index)
+{
+   if(index < 0 || index >= m_vpPoints->size())
+      return NULL;
+
+   return m_vpPoints->at(index);
 }
 
 void Graph::goToZero(GraphPoint *gp)
