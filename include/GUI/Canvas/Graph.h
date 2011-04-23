@@ -21,6 +21,10 @@ namespace GUI
       void adjustPoints();
       void draw();
 
+      void goToZero(GraphPoint *gp);
+
+      GraphPoint *getPointAt(const scv::Point &pt);
+
       void setScale(const double &scale);
       inline double &getScale() { return m_Scale; }
 

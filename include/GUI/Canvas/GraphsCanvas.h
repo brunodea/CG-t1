@@ -26,6 +26,7 @@ namespace GUI
       void render();
       void update();
    protected:
+      void onMouseClick(const scv::MouseEvent &evt);
       void onMouseWheel(const scv::MouseEvent &evt);
       void onKeyPressed(const scv::KeyEvent &evt);
 

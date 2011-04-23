@@ -1,4 +1,5 @@
 #include "GUI/Canvas/GraphsCanvas.h"
+#include "GUI/Canvas/GraphPoint.hpp"
 #include "macros.h"
 #include "DCTViewer.h"
 
@@ -84,5 +85,32 @@ void GraphsCanvas::onKeyPressed(const scv::KeyEvent &evt)
       double new_scale = m_pOrigSampleGraph->getScale() - 0.1;
       m_pOrigSampleGraph->setScale(new_scale);
       DCTVIEWER->adjustCanvasPanel();
+   }
+}
+
+void GraphsCanvas::onMouseClick(const scv::MouseEvent &evt)
+{
+   if(evt.getButton() == evt.middle)
+   {
+      GraphPoint *aux = NULL;
+      aux = m_pOrigSampleGraph->getPointAt(evt.getPosition());
+      if(aux != NULL)
+      {
+         std::cout << "onMouseClick worked for Original Sample Graph point\n";
+         m_pOrigSampleGraph->goToZero(aux);
+         return;
+      }
+      aux = m_pFDCTGraph->getPointAt(evt.getPosition());
+      if(aux != NULL)
+      {
+         m_pFDCTGraph->goToZero(aux);
+         return;
+      }
+      aux = m_pIDCTGraph->getPointAt(evt.getPosition());
+      if(aux != NULL)
+      {
+         m_pIDCTGraph->goToZero(aux);
+         return;
+      }
    }
 }

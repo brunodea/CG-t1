@@ -25,7 +25,7 @@ namespace GUI
            m_iHalfHeight(GRAPH_POINT_HEIGHT/2)
       {}
 
-      void draw()
+      inline void draw()
       {
          glBegin(GL_QUADS);
             glColor4f(m_Color[0], m_Color[1], m_Color[2], m_Color[3]);
@@ -35,6 +35,14 @@ namespace GUI
             glVertex2i(m_Pos.x + m_iHalfWidth, m_Pos.y + m_iHalfHeight);
          glEnd();
       }
+
+      inline bool isInside(const scv::Point &pt)
+      {
+         if(pt.x >= m_Pos.x - m_iHalfWidth && pt.x <= m_Pos.x + m_iHalfWidth && pt.y >= m_Pos.y - m_iHalfHeight && pt.y <= m_Pos.y + m_iHalfHeight)
+            return true;
+         return false;
+      }
+
    public:
       scv::Point m_Pos;
 
