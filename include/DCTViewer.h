@@ -33,6 +33,8 @@ namespace brunodea
       static std::vector<double> &fdct(std::vector<double> &sample);
       static std::vector<double> &idct(std::vector<double> &signal);
 
+      void setSizeSample(const unsigned int &size);
+
    private:
       static DCTViewer *m_sInstance;
 
@@ -46,7 +48,6 @@ namespace brunodea
       scv::ScrollPane *m_pCanvasScrollPane;
       scv::Panel *m_pCanvasPanel;
 
-      /*DEVE ser SEMPRE um numero multiplo de 8.*/
       int m_iSampleSize; //size of the sample that will be passed to the fdct/idct (1 or 2 times 8).
 
    private:

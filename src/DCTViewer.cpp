@@ -118,13 +118,26 @@ std::vector<std::vector<double> *> *DCTViewer::getIDCTSignals()
 void DCTViewer::adjustFDCTSignals()
 {
    unsigned int sigs_size = m_pSignals->size();
-   for(unsigned int i = 0; i < sigs_size; i++)
+   int k = 0;
+   for(unsigned int i = 0; i < sigs_size; k++)
    {
-      std::vector<double> *v = &DCTViewer::fdct(*m_pSignals->at(i));
+      std::vector<double> aux;
+      for(unsigned int j = 0; j < m_iSampleSize && i < sigs_size; j++, i++)
+         aux.insert(aux.end(), m_pSignals->at(i)->begin(), m_pSignals->at(i)->end());
+      
+      std::vector<double> *v = &DCTViewer::fdct(aux);
+      int w = 0;
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         double *val = &getFDCTSignals()->at(i)->at(j);
+         if(j % 8 == 0 && j != 0)
+         {
+            k++;
+            w = 0;
+         }
+         
+         double *val = &getFDCTSignals()->at(k)->at(w);
          *val = v->at(j);
+         w++;
       }
    }
 }
@@ -132,13 +145,26 @@ void DCTViewer::adjustFDCTSignals()
 void DCTViewer::adjustIDCTSignals()
 {
    unsigned int sigs_size = getFDCTSignals()->size();
-   for(unsigned int i = 0; i < sigs_size; i++)
+   int k = 0;
+   for(unsigned int i = 0; i < sigs_size; k++)
    {
-      std::vector<double> *v = &DCTViewer::idct(*getFDCTSignals()->at(i));
+      std::vector<double> aux;
+      for(unsigned int j = 0; j < m_iSampleSize && i < sigs_size; j++, i++)
+         aux.insert(aux.end(), getFDCTSignals()->at(i)->begin(), getFDCTSignals()->at(i)->end());
+      
+      std::vector<double> *v = &DCTViewer::idct(aux);
+      int w = 0;
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         double *val = &getIDCTSignals()->at(i)->at(j);
+         if(j % 8 == 0 && j != 0)
+         {
+            k++;
+            w = 0;
+         }
+         
+         double *val = &getIDCTSignals()->at(k)->at(w);
          *val = v->at(j);
+         w++;
       }
    }
 }
@@ -219,4 +245,11 @@ void DCTViewer::adjustCanvasPanel()
    }*/
 
    m_pCanvasScrollPane->registerPanel(m_pCanvasPanel);
+}
+
+void DCTViewer::setSizeSample(const unsigned int &size)
+{
+   if(size < 0)
+      return;
+   m_iSampleSize = size;
 }

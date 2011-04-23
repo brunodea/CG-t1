@@ -1,5 +1,6 @@
 #include "GUI/Sidebar/NumSampleSpinner.h"
 #include "macros.h"
+#include "DCTViewer.h"
 
 #include <iostream>
 
@@ -20,5 +21,11 @@ void NumSampleSpinner::onValueChange()
    }
       
    m_iLastValue = (int)getValue();
+   DCTVIEWER->setSizeSample((int) m_iLastValue/8);
+   
+   DCTVIEWER->adjustFDCTSignals();
+   DCTVIEWER->adjustIDCTSignals();
+   DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoints();
+   DCTVIEWER->getGraphsCanvas()->getIDCTGraph()->adjustPoints();
 }
 
