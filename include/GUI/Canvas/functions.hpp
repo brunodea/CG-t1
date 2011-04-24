@@ -1,3 +1,8 @@
+/*
+ * Arquivo com uma função do openGL para desenhar um texto. Copiada 
+ * da API Canvas2D, feita pelo professor Pozzer.
+ */
+
 #ifndef _BRUNODEA_CG_T1_FUNCTIONS_H_
 #define _BRUNODEA_CG_T1_FUNCTIONS_H_
 
@@ -5,6 +10,8 @@
 #include <SCV/Point.h>
 #include <string>
 
+
+/* Desenha uma string 'text' na canvas na posição 'p'. */
 inline void drawText(std::string text, const scv::Point &p)
 {
    //draw the name of the graph.    
