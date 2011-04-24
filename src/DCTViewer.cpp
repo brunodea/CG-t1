@@ -72,20 +72,23 @@ void DCTViewer::addSignalVec(std::vector<double> *sv)
 void DCTViewer::addSignalVec()
 {
    std::vector<double> *v = new std::vector<double>();
-   for(unsigned int i = 0; i < 8; i++)
+   for(unsigned int i = 0; i < MASTER_VALUE; i++)
       v->push_back(0);
    addSignalVec(v);
 }
 
+/* Retorna um ponteiro para o vetor de sinais FDCT. */
 std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
 {
    double sigs_size = m_pSignals->size();
    double fdct_sigs_size = m_pFDCTSignals->size();
+   //Atualiza o vetor de sinais caso seu tamanho não esteja de acordo com o da amostra original.
    if(fdct_sigs_size < sigs_size)
    {
       std::vector<double> aux;
       for(int i = fdct_sigs_size; i < sigs_size; i++)
       {
+         //adiciona ao vetor aux o numero de sinais correspondente ao m_iSampleSize. (ou seja, m_iSampleSize*MASTER_VALUE).
          for(int j = 0; j < m_iSampleSize && i < sigs_size; j++, i++)
             aux.insert(aux.end(), m_pSignals->at(i)->begin(), m_pSignals->at(i)->end());
 
@@ -96,6 +99,7 @@ std::vector<std::vector<double> *> *DCTViewer::getFDCTSignals()
    return m_pFDCTSignals;
 }
 
+/* Mesmo que para a fdct, porém para a IDCT. */
 std::vector<std::vector<double> *> *DCTViewer::getIDCTSignals()
 {
    double fdct_sigs_size = m_pFDCTSignals->size();
@@ -115,6 +119,7 @@ std::vector<std::vector<double> *> *DCTViewer::getIDCTSignals()
    return m_pIDCTSignals;
 }
 
+/* Ajusta todos os valores da fdct. */
 void DCTViewer::adjustFDCTSignals()
 {
    unsigned int sigs_size = m_pSignals->size();
@@ -142,6 +147,7 @@ void DCTViewer::adjustFDCTSignals()
    }
 }
 
+/* Ajusta todos os valores da idct. */
 void DCTViewer::adjustIDCTSignals()
 {
    unsigned int sigs_size = getFDCTSignals()->size();
@@ -225,6 +231,7 @@ std::vector<double> &DCTViewer::idct(std::vector<double> &signal)
    return *original;
 }
 
+/* Ajusta o tamanho do panel da canvas (aplicação da escala). */
 void DCTViewer::adjustCanvasPanel()
 {
    GUI::Graph *idctGraph = getGraphsCanvas()->getIDCTGraph();
