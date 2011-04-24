@@ -13,6 +13,7 @@ GenerateSampleButton::GenerateSampleButton(const scv::Point &p, const std::strin
 
 void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
 {
+   /* Dependendo do tipo de botão, uma ação diferente é realizada quando o usuário clica nele. */
    switch(getType())
    {
    case RANDOM:
@@ -25,6 +26,7 @@ void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
       DCTVIEWER->getBottomSidebar()->addSampleRow();
    }
    
+   /* Após a ação, é necessário ajustar os sinais da FDCT e IDCT. *Os sinais originais são atualizados nas funções do switch. */
    DCTVIEWER->adjustFDCTSignals();
    DCTVIEWER->adjustIDCTSignals();
    DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoints();
