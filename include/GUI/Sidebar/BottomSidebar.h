@@ -1,6 +1,6 @@
 /**
-  * BottomSidebar eh um panel que fica na parte inferior da tela. Nele ficam os spinners que representam
-  * a amostra.
+  * BottomSidebar é um panel que fica na parte inferior da tela. Nele ficam os spinners que representam
+  * a amostra, além de outras funcionalidades.
  **/
 #ifndef _BRUNODEA_CG_T1_BOTTOM_SIDEBAR_PANE_
 #define _BRUNODEA_CG_T1_BOTTOM_SIDEBAR_PANE_
@@ -21,24 +21,28 @@ namespace GUI
    class BottomSidebar : public scv::Panel
    {
    public:
+      /*
+       * Construtor.
+       * pos_x/pos_y: posição da sidebar na tela.
+       */
       BottomSidebar(int pos_x, int pos_y);
       ~BottomSidebar();
       
+      /* Gera amostras aleatoriamente. */
       void generateRandomSample();
+      /* Gera amostras lineares, com valor inicial aleatório. */
       void generateLinearSample();
-      void adjustSampleScrollPanel();
-
+      /* Adiciona uma linha contendo MASTER_VALUE amostras (adicionando uma linha de spinners). */
       void addSampleRow();
 
    private: 
-
-      SampleSpinnersPanel *m_pSpinnersPanel;
+      SampleSpinnersPanel *m_pSpinnersPanel; //panel onde ficam os spinners com os valores da amostra.
       std::vector<GenerateSampleButton *> m_vGenerateSampleButtons; //vetor com os botoes para geracao automatica da amostra.
 
-      scv::Label *m_pSampleLabel;
-      scv::ScrollPane *m_pSampleScrollPanel;
+      scv::Label *m_pSampleLabel; //label "Sample:".
+      scv::ScrollPane *m_pSampleScrollPanel; //scroll panel onde fica o panel dos spinners.
 
-      NumSampleSpinner *m_pNumSampleSpinner;
+      NumSampleSpinner *m_pNumSampleSpinner; //spinner que ajusta a porção de sinais que serão enviados por vez para fazer a fdct e a idct.
 
    private:
       void initNumSampleSpinner();
