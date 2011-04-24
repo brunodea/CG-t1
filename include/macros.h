@@ -10,7 +10,7 @@
 #define WINDOW_WIDTH 1024 //Dimensão da janela.
 #define WINDOW_HEIGHT 600
 
-#define MASTER_VALUE 8 //valor mestre em que as contas vão ser baseadas.
+#define MASTER_VALUE 16 //valor mestre em que as contas vão ser baseadas.
 
 #define SAMPLE_SPINNER_MAX_VALUE 255 //Valores default para os Spinners da amostra original.
 #define SAMPLE_SPINNER_MIN_VALUE 0

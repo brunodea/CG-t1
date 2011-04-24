@@ -134,7 +134,7 @@ void DCTViewer::adjustFDCTSignals()
       int w = 0;
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         if(j % 8 == 0 && j != 0)
+         if(j % MASTER_VALUE == 0 && j != 0)
          {
             k++;
             w = 0;
@@ -162,7 +162,7 @@ void DCTViewer::adjustIDCTSignals()
       int w = 0;
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         if(j % 8 == 0 && j != 0)
+         if(j % MASTER_VALUE == 0 && j != 0)
          {
             k++;
             w = 0;
