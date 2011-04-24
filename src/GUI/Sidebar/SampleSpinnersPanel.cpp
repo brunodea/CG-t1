@@ -78,7 +78,7 @@ void SampleSpinnersPanel::generateRandomSample()
       std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         double value = rand() % 256;
+         double value = rand() % (SAMPLE_SPINNER_MAX_VALUE + 1);
          v->at(j)->setValue(value);
          
          double *orig = &signalVec->at(j);
