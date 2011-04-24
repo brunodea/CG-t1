@@ -22,6 +22,9 @@ void GenerateSampleButton::onMouseClick(const scv::MouseEvent &evt)
    case LINEAR:
       DCTVIEWER->getBottomSidebar()->generateLinearSample();
       break;
+   case SENOIDAL:
+      DCTVIEWER->getBottomSidebar()->generateSenoidalSample();
+      break;
    case ADD_ROW:
       DCTVIEWER->getBottomSidebar()->addSampleRow();
    }

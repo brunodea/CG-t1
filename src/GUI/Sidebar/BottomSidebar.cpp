@@ -29,20 +29,27 @@ BottomSidebar::~BottomSidebar()
 void BottomSidebar::initGenerateSampleButtons()
 {
    scv::Point p(m_pSampleScrollPanel->getRelativePosition().x + m_pSampleScrollPanel->getWidth() + 10, 20);
+   GenerateSampleButton *senoidal_button = new GenerateSampleButton(p, "Senoidal Values", GenerateSampleButton::SENOIDAL);
+   
+   p.y += senoidal_button->getHeight() + 5;
    GenerateSampleButton *random_button = new GenerateSampleButton(p, "Random Values", GenerateSampleButton::RANDOM);
+   random_button->setWidth(senoidal_button->getWidth());
 
-   p.y += random_button->getHeight() + 5;
+   p.y += senoidal_button->getHeight() + 5;
    GenerateSampleButton *linear_button = new GenerateSampleButton(p, "Linear Values", GenerateSampleButton::LINEAR);
-   linear_button->setWidth(random_button->getWidth());
+   linear_button->setWidth(senoidal_button->getWidth());
 
-   p.y += random_button->getHeight() + 5;
+   p.y = (senoidal_button->getHeight() + 5)*2;
+   p.x = 10;
    GenerateSampleButton *add_row_button = new GenerateSampleButton(p, "Add Row", GenerateSampleButton::ADD_ROW);
-   add_row_button->setWidth(random_button->getWidth());
+   add_row_button->setWidth(senoidal_button->getWidth());
 
+   m_vGenerateSampleButtons.push_back(senoidal_button);
    m_vGenerateSampleButtons.push_back(random_button);
    m_vGenerateSampleButtons.push_back(linear_button);
    m_vGenerateSampleButtons.push_back(add_row_button);
 
+   this->addComponent(senoidal_button);
    this->addComponent(random_button);
    this->addComponent(linear_button);
    this->addComponent(add_row_button);
@@ -75,6 +82,11 @@ void BottomSidebar::generateRandomSample()
 void BottomSidebar::generateLinearSample()
 {
    m_pSpinnersPanel->generateLinearSample();
+}
+
+void BottomSidebar::generateSenoidalSample()
+{
+   m_pSpinnersPanel->generateSenoidalSample();
 }
 
 void BottomSidebar::addSampleRow()

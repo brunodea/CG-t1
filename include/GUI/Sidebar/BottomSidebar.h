@@ -32,6 +32,7 @@ namespace GUI
       void generateRandomSample();
       /* Gera amostras lineares, com valor inicial aleatório. */
       void generateLinearSample();
+      void generateSenoidalSample();
       /* Adiciona uma linha contendo MASTER_VALUE amostras (adicionando uma linha de spinners). */
       void addSampleRow();
 

@@ -6,6 +6,7 @@
 #include <ctime>
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 #include <SCV/Label.h>
 
@@ -103,6 +104,25 @@ void SampleSpinnersPanel::generateLinearSample()
 
          double *orig = &signalVec->at(j);
          *orig = value;
+      }
+   }
+}
+
+void SampleSpinnersPanel::generateSenoidalSample()
+{
+   double val = 0;
+   for(unsigned int i = 0; i < m_vvSpinners.size(); i++)
+   {
+      std::vector<SampleValueSpinner *> *v = m_vvSpinners.at(i);
+      std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
+      for(unsigned int j = 0; j < v->size(); j++)
+      {
+         double value = sin(val);
+         v->at(j)->setValue(value);
+
+         double *orig = &signalVec->at(j);
+         *orig = value;
+         val++;
       }
    }
 }

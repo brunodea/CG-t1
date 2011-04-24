@@ -24,6 +24,7 @@ namespace GUI
       void addRow(); //adiciona uma linha com MASTER_VALUE spinners.
       void generateRandomSample(); //gera uma amostra aleatória.
       void generateLinearSample(); //gera uma amostra linear.
+      void generateSenoidalSample();
 
    private:
       std::vector<std::vector<SampleValueSpinner *> *> m_vvSpinners; //vetor de spinners que farão parte do panel.
