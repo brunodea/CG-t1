@@ -1,3 +1,7 @@
+/*
+ * Classe que contém as ações dos botões que ficam na BottomSidebar.
+ */
+
 #ifndef _BRUNODEA_CG_T1_GENERATE_SAMPLE_BUTTON_H_
 #define _BRUNODEA_CG_T1_GENERATE_SAMPLE_BUTTON_H_
 
@@ -11,7 +15,8 @@ namespace GUI
 {
    class GenerateSampleButton : public scv::Button
    {
-   public:      
+   public:
+      //Tipos dos botões.
       enum Type
       {
          RANDOM = 0, //generate a random sample.
@@ -21,15 +26,23 @@ namespace GUI
       }; //end of enum ButtonType.
 
    public:
+      /*
+       * Construtor.
+       * p: posição do botão.
+       * label: label do botão.
+       * type: tipo do botão.
+       */
       GenerateSampleButton(const scv::Point &p, const std::string &label, Type type);
 
+      /* Getter. */
       inline Type &getType() { return m_Type; }
-
-   private:
-      Type m_Type;
-
-   private:
+      
+   protected:
+      /* CallBack. */
       void onMouseClick(const scv::MouseEvent &evt);
+
+   private:
+      Type m_Type; //tipo do botão.
 
    }; //end of the class GenerateSampleButton
 } //end of the namespace GUI.

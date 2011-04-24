@@ -34,9 +34,9 @@ void SampleSpinnersPanel::addRow()
 {
    unsigned int spinnersSize = m_vvSpinners.size();
 
-   //125, pois 1000/8 é 125. Limitando em 125 rows significa permitir
-   //no máximo 1000 spinners.
-   if(spinnersSize >= 125)
+   //Limita em 1000 o número de spinners possíveis para serem adicionados ao panel.
+   //isso resulta em 1000/MASTER_VALUE linhas de spinners.
+   if(spinnersSize >= 1000/MASTER_VALUE)
    {
       std::cout << "Limit number of rows of spinners reached." << std::endl;
       return;
@@ -49,9 +49,11 @@ void SampleSpinnersPanel::addRow()
    int offset_x = 18;
    std::vector<SampleValueSpinner *> *v = new std::vector<SampleValueSpinner *>();
    SampleValueSpinner *spinner_aux;
-   for(int i = 0; i < 8; i++)
+
+   /* Cria uma linha com MASTER_VALUE spinners e ajusta suas posições. */
+   for(int i = 0; i < MASTER_VALUE; i++)
    {
-      int pos = (spinnersSize*8) + i;
+      int pos = (spinnersSize*MASTER_VALUE) + i;
       std::stringstream ss;
       ss << pos;
       scv::Label *label = new scv::Label(scv::Point(x, y + 3), ss.str());
@@ -76,7 +78,7 @@ void SampleSpinnersPanel::generateRandomSample()
       std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         double value = rand() % 256;
+         double value = rand() % (SAMPLE_SPINNER_MAX_VALUE + 1);
          v->at(j)->setValue(value);
          
          double *orig = &signalVec->at(j);
@@ -96,7 +98,7 @@ void SampleSpinnersPanel::generateLinearSample()
       std::vector<double> *signalVec = DCTVIEWER->getSignals()->at(i);
       for(unsigned int j = 0; j < v->size(); j++)
       {
-         double value = first*(((i + 1)*8) + j)*0.1;
+         double value = first*(((i + 1)*MASTER_VALUE) + j)*0.1;
          v->at(j)->setValue(value);
 
          double *orig = &signalVec->at(j);

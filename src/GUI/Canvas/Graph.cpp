@@ -17,13 +17,13 @@ Graph::Graph(std::vector<std::vector<double> *> *signals, const std::string &nam
 
 Graph::~Graph()
 {
-   cleanPoints();
+   clearPoints();
    delete []m_vpPoints;
 }
 
 void Graph::setScale(const double &scale)
 {
-   if(scale < 0.3 || scale == m_Scale)
+   if(scale < 0.3 || scale == m_Scale) //limita inferiormente a escala.
       return;
 
    m_Scale = scale;
@@ -37,10 +37,10 @@ void Graph::addPoints(const std::vector<GraphPoint *> &points)
 
 void Graph::adjustPoint(unsigned int row, unsigned int col)
 {
-   unsigned int signalsSize = m_vvpSignals->size()*8;
+   unsigned int signalsSize = m_vvpSignals->size()*MASTER_VALUE;
    double x_spacement = (double)(m_Scale*m_XLength)/signalsSize;
    double y_spacement = (double)(m_Scale*m_YLength)/SAMPLE_SPINNER_MAX_VALUE;
-   int pos = (row*8) + col;
+   int pos = (row*MASTER_VALUE) + col;
    GraphPoint *pt = m_vpPoints->at(pos);
    pt->m_Pos.y = -(y_spacement*m_vvpSignals->at(row)->at(col))
       + m_Pos0x0.y;
@@ -53,15 +53,15 @@ void Graph::adjustPoints()
    
    for(unsigned int i = 0; i < pointsSize; i++)
    {
-      int row = i/8;
-      int col = i%8;
+      int row = i/MASTER_VALUE;
+      int col = i%MASTER_VALUE;
       adjustPoint(row, col);
    }
 }
 
 void Graph::insertPoints()
 {
-   unsigned int signalsSize = m_vvpSignals->size()*8;
+   unsigned int signalsSize = m_vvpSignals->size()*MASTER_VALUE;
    unsigned int pointsSize = m_vpPoints->size();
    if(signalsSize > pointsSize)
    {
@@ -149,7 +149,7 @@ void Graph::draw()
    drawPoints();
 }
 
-void Graph::cleanPoints()
+void Graph::clearPoints()
 {
    for(unsigned int i = 0; i < m_vpPoints->size(); i++)
       delete m_vpPoints->at(i);
