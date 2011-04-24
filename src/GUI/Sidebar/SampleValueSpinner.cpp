@@ -23,17 +23,22 @@ SampleValueSpinner::SampleValueSpinner(const scv::Point &p)
 
 void SampleValueSpinner::onValueChange()
 {
-   int row = m_iVecPos / 8;
-   int col = m_iVecPos % 8;
+   /* Quando o valor do spinner é alterado, o vetor de sinais originais é ajustado,
+    * bem como o da FDCT e IDCT. Ajustando também seus gráficos.
+    */
+   int row = m_iVecPos / MASTER_VALUE;
+   int col = m_iVecPos % MASTER_VALUE;
 
    std::vector<double> *v = DCTVIEWER->getSignals()->at(row);
    double *orig = &v->at(col);
    *orig = this->getValue();
 
+   /* Ajusta os gráficos. */
    DCTVIEWER->getGraphsCanvas()->getOrigSampleGraph()->adjustPoint(row, col);
    DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoint(row, col);
    DCTVIEWER->getGraphsCanvas()->getIDCTGraph()->adjustPoint(row, col);
 
+   /* Caso o spinner esteja em foco e seu valor é alterado, os sinais e os gráficos são ajustados. */
    if(isFocused())
    {
       DCTVIEWER->adjustFDCTSignals();
