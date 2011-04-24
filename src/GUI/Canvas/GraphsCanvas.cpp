@@ -36,7 +36,7 @@ void GraphsCanvas::update()
    if(m_pIDCTGraph == NULL)
       m_pIDCTGraph = new Graph(DCTVIEWER->getIDCTSignals(), "IDCT apos a FDCT", scv::Point(0,450), 300, 360);
 
-   double height = getHeight() - 30;
+   double height = getHeight() - 60;
    m_pOrigSampleGraph->m_Pos0x0.y = height;
    m_pFDCTGraph->m_Pos0x0.y = height;
    m_pIDCTGraph->m_Pos0x0.y = height;
