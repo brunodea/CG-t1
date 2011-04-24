@@ -7,22 +7,24 @@
 using namespace GUI;
 
 NumSampleSpinner::NumSampleSpinner(const scv::Point &p) 
-   : scv::Spinner(p, SAMPLE_SPINNER_WIDTH, 8, 800, 8, 8)
+   : scv::Spinner(p, SAMPLE_SPINNER_WIDTH, MASTER_VALUE, MASTER_VALUE*100, MASTER_VALUE, MASTER_VALUE)
 {
-   m_iLastValue = 8;
+   m_iLastValue = MASTER_VALUE;
 }
 
 void NumSampleSpinner::onValueChange()
 {
-   if((int)getValue() % 8 != 0)
+   /* Impede que o valor do spinner seja algum valor não-múltiplo do MASTER_VALUE. */
+   if((int)getValue() % MASTER_VALUE != 0)
    {
       setValue(m_iLastValue);
       return;
    }
       
    m_iLastValue = (int)getValue();
-   DCTVIEWER->setSizeSample((int) m_iLastValue/8);
+   DCTVIEWER->setSizeSample((int) m_iLastValue/MASTER_VALUE);
    
+   /* Após o valor setado, é necessário ajustar a FDCT e a IDCT. */
    DCTVIEWER->adjustFDCTSignals();
    DCTVIEWER->adjustIDCTSignals();
    DCTVIEWER->getGraphsCanvas()->getFDCTGraph()->adjustPoints();
